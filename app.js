@@ -26,7 +26,7 @@ var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) {
 	if (err) { throw err; }
 	db = database;
-	// sobe o servidor depois que o DB estiver OK
+	// sobe o servidor depois que o DB conectar
 	app.listen(3000, function () {
 		console.log('Example app listening on port 3000!');
 	});
@@ -79,16 +79,19 @@ app.get('/index', function (req, res) {
 });
 
 
-app.get('/createuser', function (req, res) {
-	res.render('createuser', {});
+app.get('/login', function (req, res) {
+	res.render('login', {});
+});
+app.get('/login/:email/:password', function (req, res) {
+	var email = req.params.email;
+	var password = req.params.password;
+	do_login({"email": email, "password": password}, 'student', req, res);
 });
 
 
-/*
 app.get('/createquestion', function (req, res) {
 	res.render('createquestion', {});
 });
-*/
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
 	console.log(form_json);
@@ -100,20 +103,6 @@ app.get('/createquestion/:value', function (req, res) {
 	res.json({"value": req.params.value});
 });
 */
-
-
-
-
-
-app.get('/login', function (req, res) {
-	res.render('login', {});
-});
-app.get('/login/:email/:password', function (req, res) {
-	var email = req.params.email;
-	var password = req.params.password;
-
-	do_login({"email": email, "password": password}, 'student', req, res);
-});
 
 
 app.get('/get_all_questions', function (req, res) {
@@ -129,6 +118,10 @@ app.get('/get_question/:number_question', function (req, res) {
 
 
 
+
+app.get('/createuser', function (req, res) {
+	res.render('createuser', {});
+});
 
 
 

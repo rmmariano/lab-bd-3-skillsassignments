@@ -27,52 +27,52 @@
 							    "code": 1,
 							    "answer": $('#answer01').val().trim(),
 							    "competencies": [
-							      {"name": "leadership", "value": 0},
-							      {"name": "communication", "value": 0},
-								  {"name": "values", "value": 0},
-								  {"name": "workGroup", "value": 0},
-								  {"name": "determination", "value": 0},
-								  {"name": "resilience", "value": 0},
-								  {"name": "autonomy", "value": 0}
+							      {"name": "leadership", "value": $('#inputCheckboxLeadership01').val().trim()},
+							      {"name": "communication", "value": $('#inputCheckboxCommunication01').val().trim()},
+								  {"name": "values", "value": $('#inputCheckboxValues01').val().trim()},
+								  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup01').val().trim()},
+								  {"name": "determination", "value": $('#inputCheckboxDetermination01').val().trim()},
+								  {"name": "resilience", "value": $('#inputCheckboxResilience01').val().trim()},
+								  {"name": "autonomy", "value": $('#inputCheckboxAutonomy01').val().trim()}
 							    ]
 							  },
 							  {
 							    "code": 2,
 							    "answer": $('#answer02').val().trim(),
 								"competencies": [
-							      {"name": "leadership", "value": 0},
-							      {"name": "communication", "value": 0},
-								  {"name": "values", "value": 0},
-								  {"name": "workGroup", "value": 0},
-								  {"name": "determination", "value": 0},
-								  {"name": "resilience", "value": 0},
-								  {"name": "autonomy", "value": 0}
+							      {"name": "leadership", "value": $('#inputCheckboxLeadership02').val().trim()},
+							      {"name": "communication", "value": $('#inputCheckboxCommunication02').val().trim()},
+								  {"name": "values", "value": $('#inputCheckboxValues02').val().trim()},
+								  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup02').val().trim()},
+								  {"name": "determination", "value": $('#inputCheckboxDetermination02').val().trim()},
+								  {"name": "resilience", "value": $('#inputCheckboxResilience02').val().trim()},
+								  {"name": "autonomy", "value": $('#inputCheckboxAutonomy02').val().trim()}
 							    ]
 							  },
 							  {
 							    "code": 3,
 							    "answer": $('#answer03').val().trim(),
 								"competencies": [
-							      {"name": "leadership", "value": 0},
-							      {"name": "communication", "value": 0},
-								  {"name": "values", "value": 0},
-								  {"name": "workGroup", "value": 0},
-								  {"name": "determination", "value": 0},
-								  {"name": "resilience", "value": 0},
-								  {"name": "autonomy", "value": 0}
+							      {"name": "leadership", "value": $('#inputCheckboxLeadership03').val().trim()},
+							      {"name": "communication", "value": $('#inputCheckboxCommunication03').val().trim()},
+								  {"name": "values", "value": $('#inputCheckboxValues03').val().trim()},
+								  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup03').val().trim()},
+								  {"name": "determination", "value": $('#inputCheckboxDetermination03').val().trim()},
+								  {"name": "resilience", "value": $('#inputCheckboxResilience03').val().trim()},
+								  {"name": "autonomy", "value": $('#inputCheckboxAutonomy03').val().trim()}
 							    ]
 							  },
 							  {
 							    "code": 4,
 							    "answer": $('#answer04').val().trim(),
 								"competencies": [
-							      {"name": "leadership", "value": 0},
-							      {"name": "communication", "value": 0},
-								  {"name": "values", "value": 0},
-								  {"name": "workGroup", "value": 0},
-								  {"name": "determination", "value": 0},
-								  {"name": "resilience", "value": 0},
-								  {"name": "autonomy", "value": 0}
+							      {"name": "leadership", "value": $('#inputCheckboxLeadership04').val().trim()},
+							      {"name": "communication", "value": $('#inputCheckboxCommunication04').val().trim()},
+								  {"name": "values", "value": $('#inputCheckboxValues04').val().trim()},
+								  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup04').val().trim()},
+								  {"name": "determination", "value": $('#inputCheckboxDetermination04').val().trim()},
+								  {"name": "resilience", "value": $('#inputCheckboxResilience04').val().trim()},
+								  {"name": "autonomy", "value": $('#inputCheckboxAutonomy04').val().trim()}
 							    ]
 							  }
 							],
@@ -80,12 +80,11 @@
 							"introductionMediaType": "video"
 						};
 
-					$.post("/createquestion",
-						form_json,
-						function(data){
+					$.post("/createquestion", form_json, function(data){
+
 							console.log(data);
-						}
-					);
+
+					});
 
 					/*
                     $.getJSON("/createquestion/", function(data) {
@@ -220,15 +219,15 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxLeadership02" value="optionleadership02"> Leadership
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxLeadership02">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxCommunication02" value="optionCommunication02"> Communication
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxCommunication02">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxValues02" value="optionValues02"> Values
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxValues02">
 								</label>
 							</div>
 						</div>
@@ -240,15 +239,15 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxWorkGroup02" value="optionWorkGroup02"> WorkGroup
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxWorkGroup02">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxDetermination02" value="optionDetermination02"> Determination
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxDetermination02">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxResilience02" value="optionResilience02"> Resilience
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxResilience02">
 								</label>
 							</div>
 						</div>
@@ -260,7 +259,7 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxAutonomy02" value="optionAutonomy02"> Autonomy
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy02">
 								</label>
 							</div>
 						</div>
@@ -291,15 +290,15 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxLeadership03" value="optionleadership03"> Leadership
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxLeadership03">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxCommunication03" value="optionCommunication03"> Communication
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxCommunication03">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxValues03" value="optionValues03"> Values
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxValues03">
 								</label>
 							</div>
 						</div>
@@ -311,15 +310,15 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxWorkGroup03" value="optionWorkGroup03"> WorkGroup
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxWorkGroup03">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxDetermination03" value="optionDetermination03"> Determination
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxDetermination03">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxResilience03" value="optionResilience03"> Resilience
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxResilience03">
 								</label>
 							</div>
 						</div>
@@ -331,7 +330,7 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxAutonomy03" value="optionAutonomy03"> Autonomy
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy03">
 								</label>
 							</div>
 						</div>
@@ -362,15 +361,15 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxLeadership04" value="optionleadership04"> Leadership
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxLeadership04">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxCommunication04" value="optionCommunication04"> Communication
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxCommunication04">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxValues04" value="optionValues04"> Values
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxValues04">
 								</label>
 							</div>
 						</div>
@@ -382,15 +381,15 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxWorkGroup04" value="optionWorkGroup04"> WorkGroup
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxWorkGroup04">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxDetermination04" value="optionDetermination04"> Determination
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxDetermination04">
 								</label>
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxResilience04" value="optionResilience04"> Resilience
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxResilience04">
 								</label>
 							</div>
 						</div>
@@ -402,7 +401,7 @@
 							<div class="form-inline">
 								<label class="checkbox-inline">
 								  <input type="checkbox" id="inlineCheckboxAutonomy04" value="optionAutonomy04"> Autonomy
-								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy04">
 								</label>
 							</div>
 						</div>
