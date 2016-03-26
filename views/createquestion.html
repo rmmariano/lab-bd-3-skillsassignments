@@ -5,10 +5,424 @@
 
 		<title> Create Question </title>
 
-		<script src="http://code.jquery.com/jquery-latest.min.js"></script>	
 		<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel=stylesheet>
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+
+		<style>
+			.input_competencies_value{
+				width: 50px !important;
+			}
+		</style>
+        <script>
+            $(document).ready(function(){
+				$('#form').submit( function(e){
+                    e.preventDefault();
+
+					var form_json = {
+							"number": $('#number').val().trim(),
+							"question": $('#title').val().trim(),
+							"answer": [
+							  {
+							    "code": 1,
+							    "answer": $('#answer01').val().trim(),
+							    "competencies": [
+							      {"name": "leadership", "value": 0},
+							      {"name": "communication", "value": 0},
+								  {"name": "values", "value": 0},
+								  {"name": "workGroup", "value": 0},
+								  {"name": "determination", "value": 0},
+								  {"name": "resilience", "value": 0},
+								  {"name": "autonomy", "value": 0}
+							    ]
+							  },
+							  {
+							    "code": 2,
+							    "answer": $('#answer02').val().trim(),
+								"competencies": [
+							      {"name": "leadership", "value": 0},
+							      {"name": "communication", "value": 0},
+								  {"name": "values", "value": 0},
+								  {"name": "workGroup", "value": 0},
+								  {"name": "determination", "value": 0},
+								  {"name": "resilience", "value": 0},
+								  {"name": "autonomy", "value": 0}
+							    ]
+							  },
+							  {
+							    "code": 3,
+							    "answer": $('#answer03').val().trim(),
+								"competencies": [
+							      {"name": "leadership", "value": 0},
+							      {"name": "communication", "value": 0},
+								  {"name": "values", "value": 0},
+								  {"name": "workGroup", "value": 0},
+								  {"name": "determination", "value": 0},
+								  {"name": "resilience", "value": 0},
+								  {"name": "autonomy", "value": 0}
+							    ]
+							  },
+							  {
+							    "code": 4,
+							    "answer": $('#answer04').val().trim(),
+								"competencies": [
+							      {"name": "leadership", "value": 0},
+							      {"name": "communication", "value": 0},
+								  {"name": "values", "value": 0},
+								  {"name": "workGroup", "value": 0},
+								  {"name": "determination", "value": 0},
+								  {"name": "resilience", "value": 0},
+								  {"name": "autonomy", "value": 0}
+							    ]
+							  }
+							],
+							"introduction": $('#introduction').val().trim(),
+							"introductionMediaType": "video"
+						};
+
+					$.post("/createquestion",
+						form_json,
+						function(data){
+							console.log(data);
+						}
+					);
+
+					/*
+                    $.getJSON("/createquestion/", function(data) {
+                        if( _.isEqual(data, []) ){
+                            console.log("error");
+							console.log(data);
+                        }else{
+							console.log("ok");
+                            console.log(data);
+                        }
+                    });
+					*/
+
+                });
+            });
+        </script>
+
 	</head>
 	<body>
 		<div> Create Question </div>
+
+		<form class="form-horizontal" action="/createquestion" method="POST" id="form">
+            <div class="form-group">
+                <label for="inputNumber" class="col-sm-2 control-label"> Número </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="number" placeholder="Insira o número da questão" value="1">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputTitle" class="col-sm-2 control-label"> Título </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="title" placeholder="Insira o título da questão">
+                </div>
+            </div>
+
+			<div class="form-group">
+                <label for="inputAnswers" class="col-sm-2 control-label"> Respostas: </label>
+            </div>
+
+			<div class="form-group">
+                <label for="inputCode01" class="col-sm-2 control-label"> ID código </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="code01" value="1">
+                </div>
+            </div>
+			<div class="form-group">
+                <label for="inputAnswer01" class="col-sm-2 control-label"> Resposta </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="answer01" placeholder="Insira a 1 resposta">
+                </div>
+            </div>
+
+			<div class="form-group">
+                <label for="inputCompetencies01" class="col-sm-2 control-label"> Competências: </label>
+            </div>
+
+			<div id="idCompetencies01">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxLeadership01" value="optionLeadership01"> Leadership
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxLeadership01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxCommunication01" value="optionCommunication01"> Communication
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxCommunication01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxValues01" value="optionValues01"> Values
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxValues01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxWorkGroup01" value="optionWorkGroup01"> WorkGroup
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxWorkGroup01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxDetermination01" value="optionDetermination01"> Determination
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxDetermination01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxResilience01" value="optionResilience01"> Resilience
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxResilience01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxAutonomy01" value="optionAutonomy01"> Autonomy
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+                <label for="inputCode02" class="col-sm-2 control-label"> ID código </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="code02" value="2">
+                </div>
+            </div>
+			<div class="form-group">
+                <label for="inputAnswer02" class="col-sm-2 control-label"> Resposta </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="answer02" placeholder="Insira a 2 resposta">
+                </div>
+            </div>
+
+			<div class="form-group">
+                <label for="inputCompetencies02" class="col-sm-2 control-label"> Competências: </label>
+            </div>
+			<div id="idCompetencies02">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxLeadership02" value="optionleadership02"> Leadership
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxCommunication02" value="optionCommunication02"> Communication
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxValues02" value="optionValues02"> Values
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxWorkGroup02" value="optionWorkGroup02"> WorkGroup
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxDetermination02" value="optionDetermination02"> Determination
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxResilience02" value="optionResilience02"> Resilience
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxAutonomy02" value="optionAutonomy02"> Autonomy
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+                <label for="inputCode03" class="col-sm-2 control-label"> ID código </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="code03" value="3">
+                </div>
+            </div>
+			<div class="form-group">
+                <label for="inputAnswer03" class="col-sm-2 control-label"> Resposta </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="answer03" placeholder="Insira a 3 resposta">
+                </div>
+            </div>
+
+			<div class="form-group">
+                <label for="inputCompetencies03" class="col-sm-2 control-label"> Competências: </label>
+            </div>
+			<div id="idCompetencies03">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxLeadership03" value="optionleadership03"> Leadership
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxCommunication03" value="optionCommunication03"> Communication
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxValues03" value="optionValues03"> Values
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxWorkGroup03" value="optionWorkGroup03"> WorkGroup
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxDetermination03" value="optionDetermination03"> Determination
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxResilience03" value="optionResilience03"> Resilience
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxAutonomy03" value="optionAutonomy03"> Autonomy
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+                <label for="inputCode04" class="col-sm-2 control-label"> ID código </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="code04" value="4">
+                </div>
+            </div>
+			<div class="form-group">
+                <label for="inputAnswer04" class="col-sm-2 control-label"> Resposta </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="answer04" placeholder="Insira a 4 resposta">
+                </div>
+            </div>
+
+			<div class="form-group">
+                <label for="inputCompetencies04" class="col-sm-2 control-label"> Competências: </label>
+            </div>
+			<div id="idCompetencies04">
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxLeadership04" value="optionleadership04"> Leadership
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxCommunication04" value="optionCommunication04"> Communication
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxValues04" value="optionValues04"> Values
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxWorkGroup04" value="optionWorkGroup04"> WorkGroup
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxDetermination04" value="optionDetermination04"> Determination
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxResilience04" value="optionResilience04"> Resilience
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<div class="checkbox">
+							<div class="form-inline">
+								<label class="checkbox-inline">
+								  <input type="checkbox" id="inlineCheckboxAutonomy04" value="optionAutonomy04"> Autonomy
+								  <input type="text" class="form-control input_competencies_value" id="inputCheckboxAutonomy01">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+                <label for="inputIntroduction" class="col-sm-2 control-label"> Introdução </label>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control" id="introduction" placeholder="Insira um link de vídeo">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default"> Submeter </button>
+                </div>
+            </div>
+        </form>
+
 	</body>
 </html>

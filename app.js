@@ -1,9 +1,14 @@
 // chama o express
 var express = require('express');
 var app = express();
-
 // chama o undercore, que é uma biblioteca JS com ferramentas para trabalhar com objetos
 var _ = require("underscore");
+//chama biblioteca para trabalhar com método POST
+var bodyParser = require("body-parser");
+
+// usar método POST retornando JSON
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // template
 app.set('view engine', 'jade');
@@ -69,33 +74,47 @@ app.get('/', function (req, res) {
 	/* res.send('Hello World!'); */
 	res.render('index', {});
 });
-
 app.get('/index', function (req, res) {
 	res.render('index', {});
 });
 
-
-
-
-app.get('/createquestion', function (req, res) {
-	res.render('createquestion', {});
-});
 
 app.get('/createuser', function (req, res) {
 	res.render('createuser', {});
 });
 
 
+/*
+app.get('/createquestion', function (req, res) {
+	res.render('createquestion', {});
+});
+*/
+app.post('/createquestion', function (req, res) {
+	var form_json = req.body;
+	console.log(form_json);
+	//res.render('createquestion', {});
+	res.json({"hey": "kid"});
+});
+/*
+app.get('/createquestion/:value', function (req, res) {
+	res.json({"value": req.params.value});
+});
+*/
+
+
+
+
+
 app.get('/login', function (req, res) {
 	res.render('login', {});
 });
-
 app.get('/login/:email/:password', function (req, res) {
 	var email = req.params.email;
 	var password = req.params.password;
 
 	do_login({"email": email, "password": password}, 'student', req, res);
 });
+
 
 app.get('/get_all_questions', function (req, res) {
 	get_search_from_collection({}, 'question', req, res);
