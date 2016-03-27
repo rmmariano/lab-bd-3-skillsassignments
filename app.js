@@ -90,59 +90,59 @@ function add_student_into_collection(form_json, req, res){
 
 function add_question_into_collection(form_json, req, res){
 	var form_json_db = {
-			"number": form_json.number,
+			"number": parseInt(form_json.number),
 			"question": form_json.question,
 			"answer": [
 			  {
 				"code": 1,
-				"answer": form_json.answer01,
+				"answer": form_json.answer0answer,
 				"competencies": [
-				  {"name": "leadership", "value": $('#inputCheckboxLeadership01').val().trim()},
-				  {"name": "communication", "value": $('#inputCheckboxCommunication01').val().trim()},
-				  {"name": "values", "value": $('#inputCheckboxValues01').val().trim()},
-				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup01').val().trim()},
-				  {"name": "determination", "value": $('#inputCheckboxDetermination01').val().trim()},
-				  {"name": "resilience", "value": $('#inputCheckboxResilience01').val().trim()},
-				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy01').val().trim()}
+				  {"name": "leadership", "value": parseInt(form_json.answer0competencies0value)},
+				  {"name": "communication", "value": parseInt(form_json.answer0competencies1value)},
+				  {"name": "values", "value": parseInt(form_json.answer0competencies2value)},
+				  {"name": "workGroup", "value": parseInt(form_json.answer0competencies3value)},
+				  {"name": "determination", "value": parseInt(form_json.answer0competencies4value)},
+				  {"name": "resilience", "value": parseInt(form_json.answer0competencies5value)},
+				  {"name": "autonomy", "value": parseInt(form_json.answer0competencies6value)}
 				]
 			  },
 			  {
 				"code": 2,
-				"answer": form_json.answer02,
+				"answer": form_json.answer1answer,
 				"competencies": [
-				  {"name": "leadership", "value": $('#inputCheckboxLeadership02').val().trim()},
-				  {"name": "communication", "value": $('#inputCheckboxCommunication02').val().trim()},
-				  {"name": "values", "value": $('#inputCheckboxValues02').val().trim()},
-				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup02').val().trim()},
-				  {"name": "determination", "value": $('#inputCheckboxDetermination02').val().trim()},
-				  {"name": "resilience", "value": $('#inputCheckboxResilience02').val().trim()},
-				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy02').val().trim()}
+				  {"name": "leadership", "value": parseInt(form_json.answer1competencies0value)},
+				  {"name": "communication", "value": parseInt(form_json.answer1competencies1value)},
+				  {"name": "values", "value": parseInt(form_json.answer1competencies2value)},
+				  {"name": "workGroup", "value": parseInt(form_json.answer1competencies3value)},
+				  {"name": "determination", "value": parseInt(form_json.answer1competencies4value)},
+				  {"name": "resilience", "value": parseInt(form_json.answer1competencies5value)},
+				  {"name": "autonomy", "value": parseInt(form_json.answer1competencies6value)}
 				]
 			  },
 			  {
 				"code": 3,
-				"answer": form_json.answer03,
+				"answer": form_json.answer2answer,
 				"competencies": [
-				  {"name": "leadership", "value": $('#inputCheckboxLeadership03').val().trim()},
-				  {"name": "communication", "value": $('#inputCheckboxCommunication03').val().trim()},
-				  {"name": "values", "value": $('#inputCheckboxValues03').val().trim()},
-				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup03').val().trim()},
-				  {"name": "determination", "value": $('#inputCheckboxDetermination03').val().trim()},
-				  {"name": "resilience", "value": $('#inputCheckboxResilience03').val().trim()},
-				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy03').val().trim()}
+				  {"name": "leadership", "value": parseInt(form_json.answer2competencies0value)},
+				  {"name": "communication", "value": parseInt(form_json.answer2competencies1value)},
+				  {"name": "values", "value": parseInt(form_json.answer2competencies2value)},
+				  {"name": "workGroup", "value": parseInt(form_json.answer2competencies3value)},
+				  {"name": "determination", "value": parseInt(form_json.answer2competencies4value)},
+				  {"name": "resilience", "value": parseInt(form_json.answer2competencies5value)},
+				  {"name": "autonomy", "value": parseInt(form_json.answer2competencies6value)}
 				]
 			  },
 			  {
 				"code": 4,
-				"answer": form_json.answer04,
+				"answer": form_json.answer3answer,
 				"competencies": [
-				  {"name": "leadership", "value": $('#inputCheckboxLeadership04').val().trim()},
-				  {"name": "communication", "value": $('#inputCheckboxCommunication04').val().trim()},
-				  {"name": "values", "value": $('#inputCheckboxValues04').val().trim()},
-				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup04').val().trim()},
-				  {"name": "determination", "value": $('#inputCheckboxDetermination04').val().trim()},
-				  {"name": "resilience", "value": $('#inputCheckboxResilience04').val().trim()},
-				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy04').val().trim()}
+				  {"name": "leadership", "value": parseInt(form_json.answer3competencies0value)},
+				  {"name": "communication", "value": parseInt(form_json.answer3competencies1value)},
+				  {"name": "values", "value": parseInt(form_json.answer3competencies2value)},
+				  {"name": "workGroup", "value": parseInt(form_json.answer3competencies3value)},
+				  {"name": "determination", "value": parseInt(form_json.answer3competencies4value)},
+				  {"name": "resilience", "value": parseInt(form_json.answer3competencies5value)},
+				  {"name": "autonomy", "value": parseInt(form_json.answer3competencies6value)}
 				]
 			  }
 			],
@@ -218,8 +218,8 @@ app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
 	form_json = arrange_json(form_json);
 	console.log(form_json);
-	//add_question_into_collection(form_json, req, res);
-	res.json({"hey": "heykid"});
+	add_question_into_collection(form_json, req, res);
+	//res.json({"hey": "heykid"});
 });
 /*
 app.get('/createquestion/:value', function (req, res) {
