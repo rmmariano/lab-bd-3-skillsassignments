@@ -89,6 +89,17 @@ app.get('/login/:email/:password', function (req, res) {
 });
 
 
+app.get('/createuser', function (req, res) {
+	res.render('createuser', {});
+});
+app.post('/createuser', function (req, res) {
+	var form_json = req.body;
+	console.log(form_json);
+	//res.render('createquestion', {});
+	res.json({"hey": "user"});
+});
+
+
 app.get('/createquestion', function (req, res) {
 	res.render('createquestion', {});
 });
@@ -96,7 +107,7 @@ app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
 	console.log(form_json);
 	//res.render('createquestion', {});
-	res.json({"hey": "kid"});
+	res.json({"hey": "question"});
 });
 /*
 app.get('/createquestion/:value', function (req, res) {
@@ -118,10 +129,6 @@ app.get('/get_question/:number_question', function (req, res) {
 
 
 
-
-app.get('/createuser', function (req, res) {
-	res.render('createuser', {});
-});
 
 
 

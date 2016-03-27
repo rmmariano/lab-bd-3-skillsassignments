@@ -81,9 +81,7 @@
 						};
 
 					$.post("/createquestion", form_json, function(data){
-
 							console.log(data);
-
 					});
 
 					/*
@@ -106,7 +104,7 @@
 	<body>
 		<div> Create Question </div>
 
-		<form class="form-horizontal" action="/createquestion" method="POST" id="form">
+		<form class="form-horizontal" method="POST" id="form">
             <div class="form-group">
                 <label for="inputNumber" class="col-sm-2 control-label"> Número </label>
                 <div class="col-sm-3">
