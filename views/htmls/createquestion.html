@@ -2,7 +2,6 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-
 		<title> Create Question </title>
 
 		<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel=stylesheet>
@@ -14,6 +13,7 @@
 				width: 50px !important;
 			}
 		</style>
+
         <script>
             $(document).ready(function(){
 				$('#form').submit( function(e){
@@ -88,25 +88,14 @@
 						}
 						console.log(data);
 					});
-
-					/*
-                    $.getJSON("/createquestion/", function(data) {
-                        if( _.isEqual(data, []) ){
-                            console.log("error");
-							console.log(data);
-                        }else{
-							console.log("ok");
-                            console.log(data);
-                        }
-                    });
-					*/
-
                 });
             });
         </script>
 
 	</head>
+
 	<body>
+
 		<div> Create Question </div>
 
 		<form class="form-horizontal" method="POST" id="form">
@@ -143,7 +132,6 @@
 			<div class="form-group">
                 <label for="inputCompetencies01" class="col-sm-2 control-label"> Competências: </label>
             </div>
-
 			<div id="idCompetencies01">
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">

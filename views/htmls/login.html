@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-
         <title> Login </title>
 
         <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel=stylesheet />
@@ -35,21 +34,6 @@
 						}
 						console.log(data);
 					});
-
-                    /*
-                    $.getJSON("/login/"+email+"/"+password+"?format=json&jsoncallback=", function(data) {
-                        if( !(("error" in data) || ("warning" in data)) ){
-							console.log("ok");
-                            sessionStorage.setItem("ra", parseInt(data.ra));
-                            window.location.href = '/index';
-						}else{
-							console.log("error");
-                            error_login.show();
-						}
-						console.log(data);
-                    });
-                    */
-
                 });
             });
         </script>

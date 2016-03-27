@@ -2,7 +2,6 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-
 		<title> Create User </title>
 
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -13,6 +12,7 @@
             $(document).ready(function(){
 				$('#form').submit( function(e){
                     e.preventDefault();
+
 					var form_json = {
 							"ra": $('#ra').val().trim(),
 							"name": $('#name').val().trim(),
