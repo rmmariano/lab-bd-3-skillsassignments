@@ -12,11 +12,11 @@ app.use(bodyParser.json());
 
 // template
 app.set('view engine', 'jade');
-app.set('views', './views');
+app.set('views', './view');
 
 // arquivos estáticos
-app.use(express.static('statics'));
-app.use(express.static('views'));
+app.use(express.static('static'));
+app.use(express.static('view'));
 
 // DB
 var db;
