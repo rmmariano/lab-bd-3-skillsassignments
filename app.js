@@ -22,8 +22,8 @@ app.use(express.static('views'));
 var db;
 var MongoClient = require('mongodb').MongoClient;
 
-// conecta com o DB skills
 MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) {
+	// conecta com o DB skills
 	if (err) { throw err; }
 	db = database;
 	// sobe o servidor depois que o DB conectar
@@ -32,9 +32,10 @@ MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) 
 	});
 });
 
-// função para fazer o login
-// retorna o ra do aluno encontrado
+// DB functions
 function do_login(search, collection, req, res){
+	// função para fazer o login
+	// retorna o ra do aluno encontrado
 	db.collection(collection).find(search).toArray(
 		function(err, result) {
 			try {
@@ -52,7 +53,6 @@ function do_login(search, collection, req, res){
 	);
 }
 
-// função de consulta no banco
 function get_search_from_collection(search, collection, req, res){
 	db.collection(collection).find(search).toArray(
 		function(err, result) {
@@ -66,6 +66,117 @@ function get_search_from_collection(search, collection, req, res){
 			}
 		}
 	);
+}
+
+function add_student_into_collection(form_json, req, res){
+	db.collection('student').insertOne(
+		{
+			"ra" : form_json.ra,
+			"name" : form_json.name,
+			"email" : form_json.email,
+			"password" : form_json.password
+		},
+		function(err, result){
+			if(err){
+				// If it failed, return error
+				res.json({"error": "There was a problem adding the information to the database."});
+			}else{
+				// And forward to success page
+				res.json({"ok": "ok"});
+			}
+		}
+	);
+}
+
+function add_question_into_collection(form_json, req, res){
+	var form_json_db = {
+			"number": form_json.number,
+			"question": form_json.question,
+			"answer": [
+			  {
+				"code": 1,
+				"answer": form_json.answer01,
+				"competencies": [
+				  {"name": "leadership", "value": $('#inputCheckboxLeadership01').val().trim()},
+				  {"name": "communication", "value": $('#inputCheckboxCommunication01').val().trim()},
+				  {"name": "values", "value": $('#inputCheckboxValues01').val().trim()},
+				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup01').val().trim()},
+				  {"name": "determination", "value": $('#inputCheckboxDetermination01').val().trim()},
+				  {"name": "resilience", "value": $('#inputCheckboxResilience01').val().trim()},
+				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy01').val().trim()}
+				]
+			  },
+			  {
+				"code": 2,
+				"answer": form_json.answer02,
+				"competencies": [
+				  {"name": "leadership", "value": $('#inputCheckboxLeadership02').val().trim()},
+				  {"name": "communication", "value": $('#inputCheckboxCommunication02').val().trim()},
+				  {"name": "values", "value": $('#inputCheckboxValues02').val().trim()},
+				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup02').val().trim()},
+				  {"name": "determination", "value": $('#inputCheckboxDetermination02').val().trim()},
+				  {"name": "resilience", "value": $('#inputCheckboxResilience02').val().trim()},
+				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy02').val().trim()}
+				]
+			  },
+			  {
+				"code": 3,
+				"answer": form_json.answer03,
+				"competencies": [
+				  {"name": "leadership", "value": $('#inputCheckboxLeadership03').val().trim()},
+				  {"name": "communication", "value": $('#inputCheckboxCommunication03').val().trim()},
+				  {"name": "values", "value": $('#inputCheckboxValues03').val().trim()},
+				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup03').val().trim()},
+				  {"name": "determination", "value": $('#inputCheckboxDetermination03').val().trim()},
+				  {"name": "resilience", "value": $('#inputCheckboxResilience03').val().trim()},
+				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy03').val().trim()}
+				]
+			  },
+			  {
+				"code": 4,
+				"answer": form_json.answer04,
+				"competencies": [
+				  {"name": "leadership", "value": $('#inputCheckboxLeadership04').val().trim()},
+				  {"name": "communication", "value": $('#inputCheckboxCommunication04').val().trim()},
+				  {"name": "values", "value": $('#inputCheckboxValues04').val().trim()},
+				  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup04').val().trim()},
+				  {"name": "determination", "value": $('#inputCheckboxDetermination04').val().trim()},
+				  {"name": "resilience", "value": $('#inputCheckboxResilience04').val().trim()},
+				  {"name": "autonomy", "value": $('#inputCheckboxAutonomy04').val().trim()}
+				]
+			  }
+			],
+			"introduction": form_json.introduction,
+			"introductionMediaType": "video"
+		};
+
+	db.collection('question').insertOne(form_json_db, function(err, result){
+		if(err){
+			// If it failed, return error
+			res.json({"error": "There was a problem adding the information to the database."});
+		}else{
+			// And forward to success page
+			res.json({"ok": "ok"});
+		}
+	});
+}
+
+
+// normal functions
+function replaceAllSpecialCharacters(str) {
+    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "");
+}
+
+function arrange_json(form_json){
+	var newkey;
+	for(var key in form_json){
+		newkey = replaceAllSpecialCharacters(key);
+		if(newkey != key){
+			form_json[newkey] = form_json[key];
+			delete form_json[key];
+		}
+	}
+	return form_json;
 }
 
 
@@ -89,15 +200,15 @@ app.get('/login/:email/:password', function (req, res) {
 });
 
 
-app.get('/createuser', function (req, res) {
-	res.render('createuser', {});
+app.get('/createstudent', function (req, res) {
+	res.render('createstudent', {});
 });
-app.post('/createuser', function (req, res) {
+app.post('/createstudent', function (req, res) {
 	var form_json = req.body;
 	console.log(form_json);
-	//res.render('createquestion', {});
-	res.json({"hey": "user"});
+	add_student_into_collection(form_json, req, res);
 });
+
 
 
 app.get('/createquestion', function (req, res) {
@@ -105,9 +216,10 @@ app.get('/createquestion', function (req, res) {
 });
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
+	form_json = arrange_json(form_json);
 	console.log(form_json);
-	//res.render('createquestion', {});
-	res.json({"hey": "question"});
+	//add_question_into_collection(form_json, req, res);
+	res.json({"hey": "heykid"});
 });
 /*
 app.get('/createquestion/:value', function (req, res) {

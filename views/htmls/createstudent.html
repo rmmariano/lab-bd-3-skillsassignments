@@ -20,8 +20,8 @@
 							"password": $('#password').val().trim(),
 							"repeatPassword": $('#repeatPassword').val().trim()
 						};
-						
-					$.post("/createuser", form_json, function(data){
+
+					$.post("/createstudent", form_json, function(data){
 							console.log(data);
 					});
                 });
