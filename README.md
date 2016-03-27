@@ -12,6 +12,3 @@ No navegador acesse:
 http://127.0.0.1:3000/
 
 Utiliza-se o MongoDB como banco de dados.
-
-
-Created by Rodrigo Mariano
