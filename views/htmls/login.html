@@ -24,22 +24,32 @@
                         return;
                     }
 
-                    $.getJSON("/login/"+email+"/"+password+"?format=json&jsoncallback=", function(data) {
-                        if( _.isEqual(data, []) ){
-                            error_login.show();
-                        }else{
+                    $.post("/login", {"email": email, "password": password}, function(data){
+						if( !(("error" in data) || ("warning" in data)) ){
+							console.log("ok");
                             sessionStorage.setItem("ra", parseInt(data.ra));
                             window.location.href = '/index';
-                        }
+						}else{
+							console.log("error");
+                            error_login.show();
+						}
+						console.log(data);
+					});
 
-                        /*if(data[0].ra == 0){
-                            window.location.href = '/index.html';
-                        } else {
-                            parseInt(sessionStorage.setItem("ra",data[0].ra));
-                            window.location.href = '/question.html';
-                        }*/
-
+                    /*
+                    $.getJSON("/login/"+email+"/"+password+"?format=json&jsoncallback=", function(data) {
+                        if( !(("error" in data) || ("warning" in data)) ){
+							console.log("ok");
+                            sessionStorage.setItem("ra", parseInt(data.ra));
+                            window.location.href = '/index';
+						}else{
+							console.log("error");
+                            error_login.show();
+						}
+						console.log(data);
                     });
+                    */
+
                 });
             });
         </script>
@@ -61,7 +71,7 @@
                     <input type="password" class="form-control" id="password" placeholder="Password">
                 </div>
             </div>
-            
+
             <div id="error_login" class="alert alert-danger" role="alert">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>

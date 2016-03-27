@@ -22,7 +22,12 @@
 						};
 
 					$.post("/createstudent", form_json, function(data){
-							console.log(data);
+						if( !(("error" in data) || ("warning" in data)) ){
+							console.log("ok");
+						}else{
+							console.log("error");
+						}
+						console.log(data);
 					});
                 });
             });

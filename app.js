@@ -41,7 +41,7 @@ function do_login(search, collection, req, res){
 			try {
 				if (err) { throw err; }
 				if(_.isEqual(result, [])){
-					res.json([]);
+					res.json({"warning": "The record doesn't exist."});
 					return;
 				}
 				res.json({"ra": result[0].ra});
@@ -58,7 +58,10 @@ function get_search_from_collection(search, collection, req, res){
 		function(err, result) {
 			try {
 				if (err) { throw err; }
-
+				if(_.isEqual(result, [])){
+					res.json({"warning": "The records don't exist."});
+					return;
+				}
 				res.json(result);
 			}catch(error) {
 				res.json({"error": "Some problem happens with the DB. Please contact an administrator.",
@@ -71,18 +74,17 @@ function get_search_from_collection(search, collection, req, res){
 function add_student_into_collection(form_json, req, res){
 	db.collection('student').insertOne(
 		{
-			"ra" : form_json.ra,
+			"ra" : parseInt(form_json.ra),
 			"name" : form_json.name,
 			"email" : form_json.email,
 			"password" : form_json.password
 		},
 		function(err, result){
 			if(err){
-				// If it failed, return error
-				res.json({"error": "There was a problem adding the information to the database."});
+				res.json({"error": "There was a problem adding the information to the database.",
+							"in": "add_student_into_collection"});
 			}else{
-				// And forward to success page
-				res.json({"ok": "ok"});
+				res.json({"ok": "Record was add with success."});
 			}
 		}
 	);
@@ -152,11 +154,10 @@ function add_question_into_collection(form_json, req, res){
 
 	db.collection('question').insertOne(form_json_db, function(err, result){
 		if(err){
-			// If it failed, return error
-			res.json({"error": "There was a problem adding the information to the database."});
+			res.json({"error": "There was a problem adding the information to the database.",
+						"in": "add_question_into_collection"});
 		}else{
-			// And forward to success page
-			res.json({"ok": "ok"});
+			res.json({"ok": "Record was add with success."});
 		}
 	});
 }
@@ -182,7 +183,6 @@ function arrange_json(form_json){
 
 // rotas
 app.get('/', function (req, res) {
-	/* res.send('Hello World!'); */
 	res.render('index', {});
 });
 app.get('/index', function (req, res) {
@@ -193,9 +193,9 @@ app.get('/index', function (req, res) {
 app.get('/login', function (req, res) {
 	res.render('login', {});
 });
-app.get('/login/:email/:password', function (req, res) {
-	var email = req.params.email;
-	var password = req.params.password;
+app.post('/login', function (req, res) {
+	var email = req.body.email;
+	var password = req.body.password;
 	do_login({"email": email, "password": password}, 'student', req, res);
 });
 
@@ -205,10 +205,17 @@ app.get('/createstudent', function (req, res) {
 });
 app.post('/createstudent', function (req, res) {
 	var form_json = req.body;
-	console.log(form_json);
 	add_student_into_collection(form_json, req, res);
 });
 
+app.get('/get_all_students', function (req, res) {
+	get_search_from_collection({}, 'students', req, res);
+});
+
+app.get('/get_student/:ra', function (req, res) {
+	var ra = parseInt(req.params.ra);
+	get_search_from_collection({"ra": ra}, 'student', req, res);
+});
 
 
 app.get('/createquestion', function (req, res) {
@@ -217,16 +224,8 @@ app.get('/createquestion', function (req, res) {
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
 	form_json = arrange_json(form_json);
-	console.log(form_json);
 	add_question_into_collection(form_json, req, res);
-	//res.json({"hey": "heykid"});
 });
-/*
-app.get('/createquestion/:value', function (req, res) {
-	res.json({"value": req.params.value});
-});
-*/
-
 
 app.get('/get_all_questions', function (req, res) {
 	get_search_from_collection({}, 'question', req, res);
@@ -236,25 +235,6 @@ app.get('/get_question/:number_question', function (req, res) {
 	var number_question = parseInt(req.params.number_question);
 	get_search_from_collection({"number": number_question}, 'question', req, res);
 });
-
-
-
-
-
-
-
-
-
-/*
-app.get('/get_users', function (req, res) {
-	//res.send('Get Users');
-	res.json({"hey": "kid", "hello": "its me"});
-});
-*/
-
-//app.get('/competencies/:ra', function (req, res) {
- //var ra = req.params.ra;
-
 
 
 // facul
