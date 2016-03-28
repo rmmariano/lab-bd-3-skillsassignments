@@ -1,3 +1,5 @@
+// responsabilidades do model
+
 // chama o undercore, que é uma biblioteca JS com ferramentas para trabalhar com objetos
 var _ = require("underscore");
 
@@ -6,14 +8,9 @@ var MongoClient = require('mongodb').MongoClient;
 
 MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) {
 	// conecta com o DB skills
+	
 	if (err) { throw err; }
 	db = database;
-	// sobe o servidor depois que o DB conectar
-    /*
-    app.listen(3000, function () {
-		console.log('Example app listening on port 3000!');
-	});
-    */
 });
 
 // DB functions
