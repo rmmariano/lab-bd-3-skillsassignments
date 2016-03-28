@@ -181,6 +181,27 @@ function arrange_json(form_json){
 }
 
 
+
+
+
+
+
+var model = require("./model/model");
+
+
+app.get('/tests', function (req, res) {
+	var resp = model.soma(1,2);
+	var resp2 = model.mult(1,2);
+	res.json({"resp": resp, "resp2": resp2});
+});
+
+
+
+
+
+
+
+
 // rotas
 app.get('/', function (req, res) {
 	res.render('index', {});
