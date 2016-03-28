@@ -51,7 +51,7 @@ app.post('/createstudent', function (req, res) {
 });
 
 app.get('/get_all_students', function (req, res) {
-	model.get_search_from_collection({}, 'students', req, res);
+	model.get_search_from_collection({}, 'student', req, res);
 });
 
 app.get('/get_student/:ra', function (req, res) {
@@ -77,6 +77,21 @@ app.get('/get_question/:number_question', function (req, res) {
 	var number_question = parseInt(req.params.number_question);
 	model.get_search_from_collection({"number": number_question}, 'question', req, res);
 });
+
+
+
+
+
+app.get('/question', function (req, res) {
+	res.render('question', {});
+});
+
+app.get('/searchassessment', function (req, res) {
+	res.render('searchassessment', {});
+});
+
+
+
 
 
 app.listen(3000, function () {

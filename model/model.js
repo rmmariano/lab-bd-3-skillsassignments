@@ -8,7 +8,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) {
 	// conecta com o DB skills
-	
+
 	if (err) { throw err; }
 	db = database;
 });
@@ -25,6 +25,7 @@ function do_login(search, collection, req, res){
 					res.json({"warning": "The record doesn't exist."});
 					return;
 				}
+
 				res.json({"ra": result[0].ra});
 			}catch(error) {
 				res.json({"error": error, "in": "do_login",
