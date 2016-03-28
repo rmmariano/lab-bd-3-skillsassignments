@@ -56,86 +56,99 @@ function get_search_from_collection(search, collection, req, res){
 }
 
 function add_student_into_collection(form_json, req, res){
-	db.collection('student').insertOne(
-		{
-			"ra" : parseInt(form_json.ra),
-			"name" : form_json.name,
-			"email" : form_json.email,
-			"password" : form_json.password
-		},
-		function(err, result){
-			if(err){
-                res.json({"error": err, "in": "add_student_into_collection",
-                    "error_msg": "There was a problem adding the information to the database."
-				});
-			}else{
-				res.json({"ok": "Record was add with success."});
-			}
+	var form_json_db = {
+		"ra" : parseInt(form_json.ra),
+		"name" : form_json.name,
+		"email" : form_json.email,
+		"password" : form_json.password,
+		"institution": form_json.institution,
+		"course": form_json.course,
+		"year": parseInt(form_json.year),
+		"period": parseInt(form_json.period),
+		"competencies": [
+			  {"name": "leadership", "value": 0},
+			  {"name": "communication", "value": 0},
+			  {"name": "values", "value": 0},
+			  {"name": "workGroup", "value": 0},
+			  {"name": "determination", "value": 0},
+			  {"name": "resilience", "value": 0},
+			  {"name": "autonomy", "value": 0}
+	  	],
+		"question": 1
+	};
+
+	db.collection('student').insertOne(form_json_db, function(err, result){
+		if(err){
+            res.json({"error": err, "in": "add_student_into_collection",
+                "error_msg": "There was a problem adding the information to the database."
+			});
+		}else{
+			res.json({"ok": "Record was add with success."});
 		}
-	);
+	});
 }
 
 function add_question_into_collection(form_json, req, res){
 	var form_json_db = {
-			"number": parseInt(form_json.number),
-			"question": form_json.question,
-			"answer": [
-			  {
-				"code": 1,
-				"answer": form_json.answer0answer,
-				"competencies": [
-				  {"name": "leadership", "value": parseInt(form_json.answer0competencies0value)},
-				  {"name": "communication", "value": parseInt(form_json.answer0competencies1value)},
-				  {"name": "values", "value": parseInt(form_json.answer0competencies2value)},
-				  {"name": "workGroup", "value": parseInt(form_json.answer0competencies3value)},
-				  {"name": "determination", "value": parseInt(form_json.answer0competencies4value)},
-				  {"name": "resilience", "value": parseInt(form_json.answer0competencies5value)},
-				  {"name": "autonomy", "value": parseInt(form_json.answer0competencies6value)}
-				]
-			  },
-			  {
-				"code": 2,
-				"answer": form_json.answer1answer,
-				"competencies": [
-				  {"name": "leadership", "value": parseInt(form_json.answer1competencies0value)},
-				  {"name": "communication", "value": parseInt(form_json.answer1competencies1value)},
-				  {"name": "values", "value": parseInt(form_json.answer1competencies2value)},
-				  {"name": "workGroup", "value": parseInt(form_json.answer1competencies3value)},
-				  {"name": "determination", "value": parseInt(form_json.answer1competencies4value)},
-				  {"name": "resilience", "value": parseInt(form_json.answer1competencies5value)},
-				  {"name": "autonomy", "value": parseInt(form_json.answer1competencies6value)}
-				]
-			  },
-			  {
-				"code": 3,
-				"answer": form_json.answer2answer,
-				"competencies": [
-				  {"name": "leadership", "value": parseInt(form_json.answer2competencies0value)},
-				  {"name": "communication", "value": parseInt(form_json.answer2competencies1value)},
-				  {"name": "values", "value": parseInt(form_json.answer2competencies2value)},
-				  {"name": "workGroup", "value": parseInt(form_json.answer2competencies3value)},
-				  {"name": "determination", "value": parseInt(form_json.answer2competencies4value)},
-				  {"name": "resilience", "value": parseInt(form_json.answer2competencies5value)},
-				  {"name": "autonomy", "value": parseInt(form_json.answer2competencies6value)}
-				]
-			  },
-			  {
-				"code": 4,
-				"answer": form_json.answer3answer,
-				"competencies": [
-				  {"name": "leadership", "value": parseInt(form_json.answer3competencies0value)},
-				  {"name": "communication", "value": parseInt(form_json.answer3competencies1value)},
-				  {"name": "values", "value": parseInt(form_json.answer3competencies2value)},
-				  {"name": "workGroup", "value": parseInt(form_json.answer3competencies3value)},
-				  {"name": "determination", "value": parseInt(form_json.answer3competencies4value)},
-				  {"name": "resilience", "value": parseInt(form_json.answer3competencies5value)},
-				  {"name": "autonomy", "value": parseInt(form_json.answer3competencies6value)}
-				]
-			  }
-			],
-			"introduction": form_json.introduction,
-			"introductionMediaType": "video"
-		};
+		"number": parseInt(form_json.number),
+		"question": form_json.question,
+		"answer": [
+		  {
+			"code": 1,
+			"answer": form_json.answer0answer,
+			"competencies": [
+			  {"name": "leadership", "value": parseInt(form_json.answer0competencies0value)},
+			  {"name": "communication", "value": parseInt(form_json.answer0competencies1value)},
+			  {"name": "values", "value": parseInt(form_json.answer0competencies2value)},
+			  {"name": "workGroup", "value": parseInt(form_json.answer0competencies3value)},
+			  {"name": "determination", "value": parseInt(form_json.answer0competencies4value)},
+			  {"name": "resilience", "value": parseInt(form_json.answer0competencies5value)},
+			  {"name": "autonomy", "value": parseInt(form_json.answer0competencies6value)}
+			]
+		  },
+		  {
+			"code": 2,
+			"answer": form_json.answer1answer,
+			"competencies": [
+			  {"name": "leadership", "value": parseInt(form_json.answer1competencies0value)},
+			  {"name": "communication", "value": parseInt(form_json.answer1competencies1value)},
+			  {"name": "values", "value": parseInt(form_json.answer1competencies2value)},
+			  {"name": "workGroup", "value": parseInt(form_json.answer1competencies3value)},
+			  {"name": "determination", "value": parseInt(form_json.answer1competencies4value)},
+			  {"name": "resilience", "value": parseInt(form_json.answer1competencies5value)},
+			  {"name": "autonomy", "value": parseInt(form_json.answer1competencies6value)}
+			]
+		  },
+		  {
+			"code": 3,
+			"answer": form_json.answer2answer,
+			"competencies": [
+			  {"name": "leadership", "value": parseInt(form_json.answer2competencies0value)},
+			  {"name": "communication", "value": parseInt(form_json.answer2competencies1value)},
+			  {"name": "values", "value": parseInt(form_json.answer2competencies2value)},
+			  {"name": "workGroup", "value": parseInt(form_json.answer2competencies3value)},
+			  {"name": "determination", "value": parseInt(form_json.answer2competencies4value)},
+			  {"name": "resilience", "value": parseInt(form_json.answer2competencies5value)},
+			  {"name": "autonomy", "value": parseInt(form_json.answer2competencies6value)}
+			]
+		  },
+		  {
+			"code": 4,
+			"answer": form_json.answer3answer,
+			"competencies": [
+			  {"name": "leadership", "value": parseInt(form_json.answer3competencies0value)},
+			  {"name": "communication", "value": parseInt(form_json.answer3competencies1value)},
+			  {"name": "values", "value": parseInt(form_json.answer3competencies2value)},
+			  {"name": "workGroup", "value": parseInt(form_json.answer3competencies3value)},
+			  {"name": "determination", "value": parseInt(form_json.answer3competencies4value)},
+			  {"name": "resilience", "value": parseInt(form_json.answer3competencies5value)},
+			  {"name": "autonomy", "value": parseInt(form_json.answer3competencies6value)}
+			]
+		  }
+		],
+		"introduction": form_json.introduction,
+		"introductionMediaType": "video"
+	};
 
 	db.collection('question').insertOne(form_json_db, function(err, result){
 		if(err){
