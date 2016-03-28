@@ -2,7 +2,7 @@
 var express = require('express');
 var app = express();
 // chama o undercore, que é uma biblioteca JS com ferramentas para trabalhar com objetos
-var _ = require("underscore");
+//var _ = require("underscore");
 //chama biblioteca para trabalhar com método POST
 var bodyParser = require("body-parser");
 
@@ -19,6 +19,9 @@ app.use(express.static('static'));
 app.use(express.static('view'));
 
 // DB
+var model = require("./model/model");
+
+/*
 var db;
 var MongoClient = require('mongodb').MongoClient;
 
@@ -161,6 +164,7 @@ function add_question_into_collection(form_json, req, res){
 		}
 	});
 }
+*/
 
 
 // normal functions
@@ -184,7 +188,7 @@ function arrange_json(form_json){
 
 
 
-
+/*
 
 var model = require("./model/model");
 
@@ -195,7 +199,7 @@ app.get('/tests', function (req, res) {
 	res.json({"resp": resp, "resp2": resp2});
 });
 
-
+*/
 
 
 
@@ -217,7 +221,7 @@ app.get('/login', function (req, res) {
 app.post('/login', function (req, res) {
 	var email = req.body.email;
 	var password = req.body.password;
-	do_login({"email": email, "password": password}, 'student', req, res);
+	model.do_login({"email": email, "password": password}, 'student', req, res);
 });
 
 
@@ -226,16 +230,16 @@ app.get('/createstudent', function (req, res) {
 });
 app.post('/createstudent', function (req, res) {
 	var form_json = req.body;
-	add_student_into_collection(form_json, req, res);
+	model.add_student_into_collection(form_json, req, res);
 });
 
 app.get('/get_all_students', function (req, res) {
-	get_search_from_collection({}, 'students', req, res);
+	model.get_search_from_collection({}, 'students', req, res);
 });
 
 app.get('/get_student/:ra', function (req, res) {
 	var ra = parseInt(req.params.ra);
-	get_search_from_collection({"ra": ra}, 'student', req, res);
+	model.get_search_from_collection({"ra": ra}, 'student', req, res);
 });
 
 
@@ -245,16 +249,16 @@ app.get('/createquestion', function (req, res) {
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
 	form_json = arrange_json(form_json);
-	add_question_into_collection(form_json, req, res);
+	model.add_question_into_collection(form_json, req, res);
 });
 
 app.get('/get_all_questions', function (req, res) {
-	get_search_from_collection({}, 'question', req, res);
+	model.get_search_from_collection({}, 'question', req, res);
 });
 
 app.get('/get_question/:number_question', function (req, res) {
 	var number_question = parseInt(req.params.number_question);
-	get_search_from_collection({"number": number_question}, 'question', req, res);
+	model.get_search_from_collection({"number": number_question}, 'question', req, res);
 });
 
 
@@ -412,3 +416,20 @@ app.get('/get_question/:number_question', function (req, res) {
 });
 
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.listen(3000, function () {
+	console.log('Example app listening on port 3000!');
+});
