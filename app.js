@@ -25,15 +25,17 @@ var tools = require("./module/tools");
 
 // rotas
 app.get('/', function (req, res) {
-	res.render('index', {});
+	//res.render('index', {});
+	res.render('index', { _title_: 'Index', _message_: 'Welcome!' });
 });
 app.get('/index', function (req, res) {
-	res.render('index', {});
+	//res.render('index', {});
+	res.render('index', { _title_: 'Index', _message_: 'Welcome!' });
 });
 
 
 app.get('/login', function (req, res) {
-	res.render('login', {});
+	res.render('login', { _title_: 'Login' });
 });
 app.post('/login', function (req, res) {
 	var email = req.body.email;
@@ -43,7 +45,7 @@ app.post('/login', function (req, res) {
 
 
 app.get('/createstudent', function (req, res) {
-	res.render('createstudent', {});
+	res.render('createstudent', { _title_: 'Create Student' });
 });
 app.post('/createstudent', function (req, res) {
 	var form_json = req.body;
@@ -61,7 +63,7 @@ app.get('/get_student/:ra', function (req, res) {
 
 
 app.get('/createquestion', function (req, res) {
-	res.render('createquestion', {});
+	res.render('createquestion', { _title_: 'Create Question' });
 });
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;

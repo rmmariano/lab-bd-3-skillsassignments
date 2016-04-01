@@ -1,1 +1,13 @@
-include html/createquestion.html
+//include html/createquestion.html
+
+extends layouts/layout
+
+block block_css
+    link(rel='stylesheet', href='/css/common.css')
+    
+block block_js
+    script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js")
+    script(type="text/javascript", src="/js/createquestion.js")
+
+block block_body
+    include html/createquestion.html

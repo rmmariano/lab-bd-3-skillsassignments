@@ -1,1 +1,11 @@
-include html/login.html
+//include html/login.html
+
+extends layouts/layout
+
+block block_js
+    script(type="text/javascript", src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js")
+    script(type="text/javascript", src="/js/login.js")
+
+block block_body
+    include html/login.html
+    

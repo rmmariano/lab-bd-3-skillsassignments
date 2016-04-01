@@ -207,5 +207,5 @@ module.exports = {
     add_question_into_collection: add_question_into_collection,
 
 
-	do_test: do_test
+	//do_test: do_test
 };

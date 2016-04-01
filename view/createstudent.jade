@@ -1,1 +1,10 @@
-include html/createstudent.html
+//include html/createstudent.html
+
+extends layouts/layout
+
+block block_js
+    script(type="text/javascript", src="/js/createstudent.js")
+
+block block_body
+    include html/createstudent.html
+    
