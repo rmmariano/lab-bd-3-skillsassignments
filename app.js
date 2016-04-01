@@ -91,8 +91,12 @@ app.get('/searchassessment', function (req, res) {
 });
 
 
-
-
+/*
+app.get('/do_test', function (req, res) {
+	var result = model.do_test({"email": "joao@gmail.com", "password": "12345"}, 'student');
+	res.json(result);
+});
+*/
 
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!');

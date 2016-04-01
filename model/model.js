@@ -3,6 +3,7 @@
 // chama o undercore, que é uma biblioteca JS com ferramentas para trabalhar com objetos
 var _ = require("underscore");
 
+//var db = "";
 var db;
 var MongoClient = require('mongodb').MongoClient;
 
@@ -162,11 +163,49 @@ function add_question_into_collection(form_json, req, res){
 }
 
 
+
+
+/*
+function do_test(search, collection, req, res){
+	var r = db.collection(collection).find(search);
+	console.log(r);
+
+	return {};
+
+	/*
+		function(err, r) {
+			try {
+				if (err) { throw err; }
+				if(_.isEqual(r, [])){
+					result = {"warning": "The record doesn't exist."};
+					return;
+				}
+				result = {"ra": r[0].ra};
+				flag = true;
+				console.log("flag true, hue");
+			}catch(error) {
+				result = {"error": error, "in": "do_login",
+                    		"error_msg": "Some problem happens with the DB. Please contact an administrator."
+				};
+				flag = true;
+				console.log("flag true, hue2");
+			}
+		}
+	);
+	* /
+}
+*/
+
+
+
 // responsabilidades que serão utilizadas quando este arquivo for importado
 module.exports = {
     _: _,
     do_login: do_login,
     get_search_from_collection: get_search_from_collection,
     add_student_into_collection: add_student_into_collection,
-    add_question_into_collection: add_question_into_collection
+    add_question_into_collection: add_question_into_collection,
+
+
+	do_test: do_test
 };
