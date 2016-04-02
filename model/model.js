@@ -3,16 +3,27 @@
 // chama o undercore, que é uma biblioteca JS com ferramentas para trabalhar com objetos
 var _ = require("underscore");
 
-//var db = "";
-var db;
 var MongoClient = require('mongodb').MongoClient;
+var autoIncrement = require("mongodb-autoincrement");
 
+/*
+var db;
 MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) {
 	// conecta com o DB skills
 
 	if (err) { throw err; }
 	db = database;
 });
+*/
+
+var db_test;
+MongoClient.connect('mongodb://localhost:27017/skills_test', function(err, database) {
+	// conecta com o DB skills_test
+
+	if (err) { throw err; }
+	db_test = database;
+});
+
 
 // DB functions
 function do_login(search, collection, req, res){
@@ -130,36 +141,151 @@ function add_question_into_collection(form_json, req, res){
 
 
 
+
+
+/* test functions */
 /*
-function do_test(search, collection, req, res){
-	var r = db.collection(collection).find(search);
-	console.log(r);
+function getNextSequence(name) {
+   var ret = db_test.counters.findAndModify(
+          {
+            query: { _id: name },
+            update: { $inc: { seq: 1 } },
+            new: true
+          }
+   );
 
-	return {};
+   return ret.seq;
+}
 
-	/*
-		function(err, r) {
-			try {
-				if (err) { throw err; }
-				if(_.isEqual(r, [])){
-					result = {"warning": "The record doesn't exist."};
-					return;
-				}
-				result = {"ra": r[0].ra};
-				flag = true;
-				console.log("flag true, hue");
-			}catch(error) {
-				result = {"error": error, "in": "do_login",
-                    		"error_msg": "Some problem happens with the DB. Please contact an administrator."
-				};
-				flag = true;
-				console.log("flag true, hue2");
+
+db.collection('test').findAndModify(
+	{hello: 'world'}, // query
+	[['_id','asc']],  // sort order
+	{$set: {hi: 'there'}}, // replacement, replaces only the field "hi"
+	{}, // options
+	function(err, object) {
+		if (err){
+			console.warn(err.message);  // returns error if no matching object found
+		}else{
+			console.dir(object);
+		}
+	}
+);
+
+*/
+
+/*
+function getNextSequence(name) {
+	var ret = db_test.collection('counters').findAndModify(
+		{ _id: name },     // query
+		[],               // represents a sort order if multiple matches
+		{ $inc: { seq: 1 } },   // update statement
+		{ new: true },    // options - new to return the modified document
+		function(err, doc) {
+			if (err){
+				console.log(">>> err: ");
+				console.log(err.message);  // returns error if no matching object found
+			}else{
+				console.log(">>> doc: ");
+				console.log(doc);
 			}
 		}
 	);
-	* /
+
+	console.log(">>>>> ret: ");
+	console.log(ret);
+
+
+   return ret.seq;
 }
 */
+
+
+/*
+function add_person_into_collection(req, res){
+	var form_json_db = {
+		//"number": getNextSequence('personnumber'),
+		"number": 0,
+		"name": "rod"
+	};
+
+
+
+	console.log(">>>>>> 1");
+
+	autoIncrement.getNextSequence(db_test, 'person', "_id", function (err, autoIndex) {
+		console.log(">>>>>> 2");
+
+		console.log(">>>>>> err: "+err);
+		console.log(">>>>>> autoIndex: ");
+		console.log(autoIndex);
+
+		var collection = db_test.collection('person');
+
+		console.log(">>>>>> 3");
+
+        collection.insert({
+			"_id": autoIndex,
+			"number": 0,
+			"name": "rodapp"
+        });
+
+		console.log(">>>>>> 4");
+
+    });
+
+	console.log(">>>>>> 5");
+
+
+	res.json({"ok": "Record ok"});
+
+
+/*
+	db_test.collection('person').insertOne(form_json_db, function(err, result){
+		if(err){
+            res.json({"error": err, "in": "add_student_into_collection",
+                "error_msg": "There was a problem adding the information to the database."
+			});
+		}else{
+			res.json({"ok": "Record was add with success."});
+		}
+	});
+* /
+
+}
+*/
+
+function getNextSequence(name, callback){
+    db_test.collection('counters').findAndModify(
+        { "_id": name },
+        [],
+        { "$inc": { "seq": 1 }},
+        { "new": true, "upsert": true },
+        callback
+    );
+}
+
+function add_person_into_collection(req, res){
+
+	getNextSequence('personnumber', function(err, obj) {
+	    if (err) console.error(err);
+
+	    db_test.collection('person').insert({
+	        '_id': obj.value.seq,
+	        'number': 0,
+	        'name': "app"
+	    },
+		function(err,docs) {
+	        if (err) console.error(err);
+	        console.log(docs);
+	        res.end();
+	    });
+	});
+
+}
+
+
+
 
 
 
@@ -173,4 +299,5 @@ module.exports = {
 
 
 	//do_test: do_test
+	add_person_into_collection: add_person_into_collection
 };

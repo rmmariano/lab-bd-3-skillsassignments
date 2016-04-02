@@ -92,13 +92,16 @@ app.get('/searchassessment', function (req, res) {
 });
 
 
-/*
-app.get('/do_test', function (req, res) {
-	var result = model.do_test({"email": "joao@gmail.com", "password": "12345"}, 'student');
-	res.json(result);
-});
-*/
 
+
+/* test functions */
+app.get('/test_createperson', function (req, res) {
+	model.add_person_into_collection(req, res);
+});
+
+
+
+/* server is listening in port */
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!');
 });
