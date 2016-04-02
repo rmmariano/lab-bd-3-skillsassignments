@@ -10,4 +10,95 @@ block block_js
     script(type="text/javascript", src="/js/createquestion.js")
 
 block block_body
-    include html/createquestion.html
+    //include html/createquestion.html
+    
+    div Create Question
+    
+    form(id="form", method="POST", class="form-horizontal")
+        div(class="form-group")
+            label(for="inputNumber", class="col-sm-2 control-label") Número
+            div(class="col-sm-3")
+                input(type="text", class="form-control", id="number", placeholder="Insira o número da questão", value="2")
+            
+        div(class="form-group")
+            label(for="inputTitle", class="col-sm-2 control-label") Título
+            div(class="col-sm-3")
+                input(type="text", class="form-control", id="title", placeholder="Insira o título da questão")
+        
+        div(class="form-group")
+            label(for="inputAnswers", class="col-sm-2 control-label") Respostas:
+            
+            
+        
+        
+        
+        
+        - for (var i = 1; i <= 4; i++) {
+        
+        div(class="form-group")
+            label(for="inputCode"+i, class="col-sm-2 control-label") ID código
+            div(class="col-sm-3")
+                input(type="text", class="form-control", id="code"+i, value=i)
+        
+        div(class="form-group")
+            label(for="inputAnswer"+i, class="col-sm-2 control-label") Resposta
+            div(class="col-sm-3")
+                input(type="text", class="form-control", id="answer"+i, placeholder="Insira a "+i+" resposta")
+        
+        div(class="form-group")
+            label(for="inputCompetencies"+i, class="col-sm-2 control-label") Competências:
+
+        div(id="idCompetencies"+i)
+            div(class="form-group")
+                div(class="col-sm-offset-2 col-sm-10")
+                    div(class="checkbox")
+                        div(class="form-inline")
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxLeadership"+i, value="optionLeadership"+i) 
+                                | Leadership
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxLeadership"+i)
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxCommunication"+i, value="optionCommunication"+i) 
+                                | Communication
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxCommunication"+i)
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxValues"+i, value="optionValues"+i) 
+                                | Values
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxValues"+i)
+            
+            div(class="form-group")
+                div(class="col-sm-offset-2 col-sm-10")
+                    div(class="checkbox")
+                        div(class="form-inline")
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxWorkGroup"+i, value="optionWorkGroup"+i)
+                                | WorkGroup
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxWorkGroup"+i)
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxDetermination"+i, value="optionDetermination"+i) 
+                                | Determination
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxDetermination"+i)
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxResilience"+i, value="optionResilience"+i) 
+                                | Resilience
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxResilience"+i)
+            
+            div(class="form-group")
+                div(class="col-sm-offset-2 col-sm-10")
+                    div(class="checkbox")
+                        div(class="form-inline")
+                            label(class="checkbox-inline")
+                                input(type="checkbox", id="inlineCheckboxAutonomy"+i, value="optionAutonomy"+i) 
+                                | Autonomy
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxAutonomy"+i)
+        
+        - }
+        
+        div(class="form-group")
+            label(for="inputIntroduction", class="col-sm-2 control-label") Introdução
+            div(class="col-sm-3")
+                input(type="text", class="form-control", id="introduction", placeholder="Insira um link de vídeo")
+    
+        div(class="form-group")
+            div(class="col-sm-offset-2 col-sm-10")
+                button(type="submit", class="btn btn-default") Submeter

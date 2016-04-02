@@ -8,54 +8,54 @@ $(document).ready(function(){
             "answer": [
               {
                 "code": 1,
-                "answer": $('#answer01').val().trim(),
+                "answer": $('#answer1').val().trim(),
                 "competencies": [
-                  {"name": "leadership", "value": $('#inputCheckboxLeadership01').val().trim()},
-                  {"name": "communication", "value": $('#inputCheckboxCommunication01').val().trim()},
-                  {"name": "values", "value": $('#inputCheckboxValues01').val().trim()},
-                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup01').val().trim()},
-                  {"name": "determination", "value": $('#inputCheckboxDetermination01').val().trim()},
-                  {"name": "resilience", "value": $('#inputCheckboxResilience01').val().trim()},
-                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy01').val().trim()}
+                  {"name": "leadership", "value": $('#inputCheckboxLeadership1').val().trim()},
+                  {"name": "communication", "value": $('#inputCheckboxCommunication1').val().trim()},
+                  {"name": "values", "value": $('#inputCheckboxValues1').val().trim()},
+                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup1').val().trim()},
+                  {"name": "determination", "value": $('#inputCheckboxDetermination1').val().trim()},
+                  {"name": "resilience", "value": $('#inputCheckboxResilience1').val().trim()},
+                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy1').val().trim()}
                 ]
               },
               {
                 "code": 2,
-                "answer": $('#answer02').val().trim(),
+                "answer": $('#answer2').val().trim(),
                 "competencies": [
-                  {"name": "leadership", "value": $('#inputCheckboxLeadership02').val().trim()},
-                  {"name": "communication", "value": $('#inputCheckboxCommunication02').val().trim()},
-                  {"name": "values", "value": $('#inputCheckboxValues02').val().trim()},
-                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup02').val().trim()},
-                  {"name": "determination", "value": $('#inputCheckboxDetermination02').val().trim()},
-                  {"name": "resilience", "value": $('#inputCheckboxResilience02').val().trim()},
-                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy02').val().trim()}
+                  {"name": "leadership", "value": $('#inputCheckboxLeadership2').val().trim()},
+                  {"name": "communication", "value": $('#inputCheckboxCommunication2').val().trim()},
+                  {"name": "values", "value": $('#inputCheckboxValues2').val().trim()},
+                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup2').val().trim()},
+                  {"name": "determination", "value": $('#inputCheckboxDetermination2').val().trim()},
+                  {"name": "resilience", "value": $('#inputCheckboxResilience2').val().trim()},
+                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy2').val().trim()}
                 ]
               },
               {
                 "code": 3,
-                "answer": $('#answer03').val().trim(),
+                "answer": $('#answer3').val().trim(),
                 "competencies": [
-                  {"name": "leadership", "value": $('#inputCheckboxLeadership03').val().trim()},
-                  {"name": "communication", "value": $('#inputCheckboxCommunication03').val().trim()},
-                  {"name": "values", "value": $('#inputCheckboxValues03').val().trim()},
-                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup03').val().trim()},
-                  {"name": "determination", "value": $('#inputCheckboxDetermination03').val().trim()},
-                  {"name": "resilience", "value": $('#inputCheckboxResilience03').val().trim()},
-                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy03').val().trim()}
+                  {"name": "leadership", "value": $('#inputCheckboxLeadership3').val().trim()},
+                  {"name": "communication", "value": $('#inputCheckboxCommunication3').val().trim()},
+                  {"name": "values", "value": $('#inputCheckboxValues3').val().trim()},
+                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup3').val().trim()},
+                  {"name": "determination", "value": $('#inputCheckboxDetermination3').val().trim()},
+                  {"name": "resilience", "value": $('#inputCheckboxResilience3').val().trim()},
+                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy3').val().trim()}
                 ]
               },
               {
                 "code": 4,
-                "answer": $('#answer04').val().trim(),
+                "answer": $('#answer4').val().trim(),
                 "competencies": [
-                  {"name": "leadership", "value": $('#inputCheckboxLeadership04').val().trim()},
-                  {"name": "communication", "value": $('#inputCheckboxCommunication04').val().trim()},
-                  {"name": "values", "value": $('#inputCheckboxValues04').val().trim()},
-                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup04').val().trim()},
-                  {"name": "determination", "value": $('#inputCheckboxDetermination04').val().trim()},
-                  {"name": "resilience", "value": $('#inputCheckboxResilience04').val().trim()},
-                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy04').val().trim()}
+                  {"name": "leadership", "value": $('#inputCheckboxLeadership4').val().trim()},
+                  {"name": "communication", "value": $('#inputCheckboxCommunication4').val().trim()},
+                  {"name": "values", "value": $('#inputCheckboxValues4').val().trim()},
+                  {"name": "workGroup", "value": $('#inputCheckboxWorkGroup4').val().trim()},
+                  {"name": "determination", "value": $('#inputCheckboxDetermination4').val().trim()},
+                  {"name": "resilience", "value": $('#inputCheckboxResilience4').val().trim()},
+                  {"name": "autonomy", "value": $('#inputCheckboxAutonomy4').val().trim()}
                 ]
               }
             ],
