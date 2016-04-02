@@ -90,68 +90,31 @@ function add_student_into_collection(form_json, req, res){
 }
 
 function add_question_into_collection(form_json, req, res){
-	/*var form_json_db = {
-		"number": parseInt(form_json.number),
-		"question": form_json.question,
-		"answer": [
-		  {
-			"code": 1,
-			"answer": form_json.answer0answer,
-			"competencies": [
-			  {"name": "leadership", "value": parseInt(form_json.answer0competencies0value)},
-			  {"name": "communication", "value": parseInt(form_json.answer0competencies1value)},
-			  {"name": "values", "value": parseInt(form_json.answer0competencies2value)},
-			  {"name": "workGroup", "value": parseInt(form_json.answer0competencies3value)},
-			  {"name": "determination", "value": parseInt(form_json.answer0competencies4value)},
-			  {"name": "resilience", "value": parseInt(form_json.answer0competencies5value)},
-			  {"name": "autonomy", "value": parseInt(form_json.answer0competencies6value)}
-			]
-		  },
-		  {
-			"code": 2,
-			"answer": form_json.answer1answer,
-			"competencies": [
-			  {"name": "leadership", "value": parseInt(form_json.answer1competencies0value)},
-			  {"name": "communication", "value": parseInt(form_json.answer1competencies1value)},
-			  {"name": "values", "value": parseInt(form_json.answer1competencies2value)},
-			  {"name": "workGroup", "value": parseInt(form_json.answer1competencies3value)},
-			  {"name": "determination", "value": parseInt(form_json.answer1competencies4value)},
-			  {"name": "resilience", "value": parseInt(form_json.answer1competencies5value)},
-			  {"name": "autonomy", "value": parseInt(form_json.answer1competencies6value)}
-			]
-		  },
-		  {
-			"code": 3,
-			"answer": form_json.answer2answer,
-			"competencies": [
-			  {"name": "leadership", "value": parseInt(form_json.answer2competencies0value)},
-			  {"name": "communication", "value": parseInt(form_json.answer2competencies1value)},
-			  {"name": "values", "value": parseInt(form_json.answer2competencies2value)},
-			  {"name": "workGroup", "value": parseInt(form_json.answer2competencies3value)},
-			  {"name": "determination", "value": parseInt(form_json.answer2competencies4value)},
-			  {"name": "resilience", "value": parseInt(form_json.answer2competencies5value)},
-			  {"name": "autonomy", "value": parseInt(form_json.answer2competencies6value)}
-			]
-		  },
-		  {
-			"code": 4,
-			"answer": form_json.answer3answer,
-			"competencies": [
-			  {"name": "leadership", "value": parseInt(form_json.answer3competencies0value)},
-			  {"name": "communication", "value": parseInt(form_json.answer3competencies1value)},
-			  {"name": "values", "value": parseInt(form_json.answer3competencies2value)},
-			  {"name": "workGroup", "value": parseInt(form_json.answer3competencies3value)},
-			  {"name": "determination", "value": parseInt(form_json.answer3competencies4value)},
-			  {"name": "resilience", "value": parseInt(form_json.answer3competencies5value)},
-			  {"name": "autonomy", "value": parseInt(form_json.answer3competencies6value)}
-			]
-		  }
-		],
-		"introduction": form_json.introduction,
+	var form_json_db = {
+		"number": form_json["number"],
+		"question": form_json["question"],
+		"answer": [],
+		"introduction": form_json["introduction"],
 		"introductionMediaType": "video"
-	};*/
+	};
 
-	var form_json_db = form_json;
+	var obj_code = {};
+	for (var i = 1; i <= 4; i++) {
+		obj_code = {
+			"code": form_json["answer"][i-1]["code"],
+			"answer": form_json["answer"][i-1]["answer"],
+			"competencies": [
+				{"name": "leadership", "value": form_json["answer"][i-1]["competencies"][0]["value"]},
+				{"name": "communication", "value": form_json["answer"][i-1]["competencies"][1]["value"]},
+				{"name": "values", "value": form_json["answer"][i-1]["competencies"][2]["value"]},
+				{"name": "workGroup", "value": form_json["answer"][i-1]["competencies"][3]["value"]},
+				{"name": "determination", "value": form_json["answer"][i-1]["competencies"][4]["value"]},
+				{"name": "resilience", "value": form_json["answer"][i-1]["competencies"][5]["value"]},
+				{"name": "autonomy", "value": form_json["answer"][i-1]["competencies"][6]["value"]}
+			]
+		};
+		form_json_db["answer"].push(obj_code);
+	}
 
 	db.collection('question').insertOne(form_json_db, function(err, result){
 		if(err){

@@ -1,5 +1,3 @@
-//include html/createquestion.html
-
 extends layouts/layout
 
 block block_css
@@ -10,8 +8,6 @@ block block_js
     script(type="text/javascript", src="/js/createquestion.js")
 
 block block_body
-    //include html/createquestion.html
-    
     div Create Question
     
     form(id="form", method="POST", class="form-horizontal")
@@ -28,11 +24,7 @@ block block_body
         div(class="form-group")
             label(for="inputAnswers", class="col-sm-2 control-label") Respostas:
             
-            
-        
-        
-        
-        
+
         - for (var i = 1; i <= 4; i++) {
         
         div(class="form-group")

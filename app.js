@@ -67,7 +67,6 @@ app.get('/createquestion', function (req, res) {
 });
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
-	//form_json = tools.arrange_json(form_json);
 	model.add_question_into_collection(form_json, req, res);
 });
 
