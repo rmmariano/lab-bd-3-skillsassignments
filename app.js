@@ -5,7 +5,7 @@ var app = express();
 var bodyParser = require("body-parser");
 
 // usar método POST retornando JSON
-app.use(bodyParser.urlencoded({ extended: false }));
+//app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // template
@@ -67,7 +67,7 @@ app.get('/createquestion', function (req, res) {
 });
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
-	form_json = tools.arrange_json(form_json);
+	//form_json = tools.arrange_json(form_json);
 	model.add_question_into_collection(form_json, req, res);
 });
 

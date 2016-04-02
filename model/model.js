@@ -90,7 +90,7 @@ function add_student_into_collection(form_json, req, res){
 }
 
 function add_question_into_collection(form_json, req, res){
-	var form_json_db = {
+	/*var form_json_db = {
 		"number": parseInt(form_json.number),
 		"question": form_json.question,
 		"answer": [
@@ -149,7 +149,9 @@ function add_question_into_collection(form_json, req, res){
 		],
 		"introduction": form_json.introduction,
 		"introductionMediaType": "video"
-	};
+	};*/
+
+	var form_json_db = form_json;
 
 	db.collection('question').insertOne(form_json_db, function(err, result){
 		if(err){
