@@ -72,7 +72,8 @@ function get_search_from_collection(search, collection, req, res){
 
 function get_search_from_collection(search, collection, template, context, req, res){
 	var msg = {};
-	db.collection(collection).find(search).toArray(
+	// { _id: 1} quer dizer para ordenar crescentemente
+	db.collection(collection).find(search).sort({ _id: 1}).toArray(
 		function(err, result) {
 			try {
 				if (err) { throw err; }
@@ -81,18 +82,20 @@ function get_search_from_collection(search, collection, template, context, req, 
 				}else{
 					msg = result;
 				}
-			}catch(error) {
+			} catch(error) {
 				msg = {"error": error, "in": "get_search_from_collection",
                     "error_msg": "Some problem happens with the DB. Please contact an administrator."};
 			}
 
-			if( template == '' ){
+			if ( template == '' ) {
+				//se nenhum template for especificado, apenas retorna um JSON com os valores
 				res.json(msg);
-			}else{
+			} else {
+				//se um template for especificado, retorna um JSON com os valores dentro do contexto do template
 				context["_dbresult_"] = msg;
+				//console.log(">>>> \n"+context["_dbresult_"]);
 				res.render(template, context);
 			}
-
 		}
 	);
 }

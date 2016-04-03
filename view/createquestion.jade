@@ -10,13 +10,23 @@ block block_js
 block block_body
     div Create Question
     
-    div #{_dbresult_}
+    //div #{_dbresult_}
+    
+    //div #{_dbresult_[0]}
+    //div= _dbresult_[0].name
+    
+    //div #{_dbresult_.0}
+    //div= _dbresult_.0
+    
+    //div #{_dbresult_(0)}
+    //div= _dbresult_(0)
     
     //div= !{_dbresult_.number}
     
-    each val in _dbresult_
-        p --> #{val._id}hey
-        p --> #{val.name}
+    //-
+        each val in _dbresult_
+            p --> #{val._id}hey
+            p --> #{val.name}
     
     form(id="form", method="POST", class="form-horizontal")
         
@@ -40,7 +50,7 @@ block block_body
         div(class="form-group")
             label(for="inputCode"+i, class="col-sm-2 control-label") ID código
             div(class="col-sm-3")
-                input(type="text", class="form-control", id="code"+i, value=i)
+                input(type="text", class="form-control", id="code"+i, value=i, readonly="readonly")
         
         div(class="form-group")
             label(for="inputAnswer"+i, class="col-sm-2 control-label") Resposta
@@ -56,43 +66,43 @@ block block_body
                     div(class="checkbox")
                         div(class="form-inline")
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxLeadership"+i, value="optionLeadership"+i) 
-                                | Leadership
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxLeadership"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[0].name}"+i, value="option#{_dbresult_[0].name}"+i) 
+                                = _dbresult_[0].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[0].name}"+i)
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxCommunication"+i, value="optionCommunication"+i) 
-                                | Communication
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxCommunication"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[1].name}"+i, value="option#{_dbresult_[1].name}"+i) 
+                                = _dbresult_[1].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[1].name}"+i)
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxValues"+i, value="optionValues"+i) 
-                                | Values
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxValues"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[2].name}"+i, value="option#{_dbresult_[2].name}"+i) 
+                                = _dbresult_[2].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[2].name}"+i)
             
             div(class="form-group")
                 div(class="col-sm-offset-2 col-sm-10")
                     div(class="checkbox")
                         div(class="form-inline")
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxWorkGroup"+i, value="optionWorkGroup"+i)
-                                | WorkGroup
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxWorkGroup"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[3].name}"+i, value="option#{_dbresult_[3].name}"+i)
+                                = _dbresult_[3].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[3].name}"+i)
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxDetermination"+i, value="optionDetermination"+i) 
-                                | Determination
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxDetermination"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[4].name}"+i, value="option#{_dbresult_[4].name}"+i) 
+                                = _dbresult_[4].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[4].name}"+i)
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxResilience"+i, value="optionResilience"+i) 
-                                | Resilience
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxResilience"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[5].name}"+i, value="option#{_dbresult_[5].name}"+i) 
+                                = _dbresult_[5].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[5].name}"+i)
             
             div(class="form-group")
                 div(class="col-sm-offset-2 col-sm-10")
                     div(class="checkbox")
                         div(class="form-inline")
                             label(class="checkbox-inline")
-                                input(type="checkbox", id="inlineCheckboxAutonomy"+i, value="optionAutonomy"+i) 
-                                | Autonomy
-                                input(type="text", class="form-control input_competencies_value", id="inputCheckboxAutonomy"+i)
+                                input(type="checkbox", id="inlineCheckbox#{_dbresult_[6].name}"+i, value="option#{_dbresult_[6].name}"+i) 
+                                = _dbresult_[6].name
+                                input(type="text", class="form-control input_competencies_value", id="inputCheckbox#{_dbresult_[6].name}"+i)
         
         - }
         
