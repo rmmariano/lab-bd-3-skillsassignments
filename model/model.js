@@ -6,7 +6,7 @@ var _ = require("underscore");
 var MongoClient = require('mongodb').MongoClient;
 //var autoIncrement = require("mongodb-autoincrement");
 
-/*
+
 var db;
 MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) {
 	// conecta com o DB skills
@@ -14,8 +14,8 @@ MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) 
 	if (err) { throw err; }
 	db = database;
 });
-*/
 
+/*
 var db_test;
 MongoClient.connect('mongodb://localhost:27017/skills_test', function(err, database) {
 	// conecta com o DB skills_test
@@ -23,9 +23,25 @@ MongoClient.connect('mongodb://localhost:27017/skills_test', function(err, datab
 	if (err) { throw err; }
 	db_test = database;
 });
+*/
 
 
-// DB functions
+// DB private functions
+function getNextSequence(name, callback){
+	// Está função serve para autoincremento do mongodb
+
+    db.collection('counters').findAndModify(
+        { "_id": name },
+        [],
+        { "$inc": { "seq": 1 }},
+        { "new": true, "upsert": true },
+        callback
+    );
+}
+
+
+
+// DB public functions
 function do_login(search, collection, req, res){
 	// função para fazer o login
 	// retorna o ra do aluno encontrado
@@ -102,6 +118,75 @@ function add_student_into_collection(form_json, req, res){
 
 function add_question_into_collection(form_json, req, res){
 	var form_json_db = {
+		"number": 0,
+		"question": form_json["question"],
+		"answer": [],
+		"introduction": form_json["introduction"],
+		"introductionMediaType": "video"
+	};
+
+	var obj_code = {};
+	for (var i = 1; i <= 4; i++) {
+		obj_code = {
+			"code": form_json["answer"][i-1]["code"],
+			"answer": form_json["answer"][i-1]["answer"],
+			"competencies": [
+				{"name": "leadership", "value": form_json["answer"][i-1]["competencies"][0]["value"]},
+				{"name": "communication", "value": form_json["answer"][i-1]["competencies"][1]["value"]},
+				{"name": "values", "value": form_json["answer"][i-1]["competencies"][2]["value"]},
+				{"name": "workGroup", "value": form_json["answer"][i-1]["competencies"][3]["value"]},
+				{"name": "determination", "value": form_json["answer"][i-1]["competencies"][4]["value"]},
+				{"name": "resilience", "value": form_json["answer"][i-1]["competencies"][5]["value"]},
+				{"name": "autonomy", "value": form_json["answer"][i-1]["competencies"][6]["value"]}
+			]
+		};
+		form_json_db["answer"].push(obj_code);
+	}
+
+	getNextSequence('questionnumber', function(err, obj) {
+	    if (err) console.error(err);
+
+		form_json_db["number"] = obj.value.seq;
+
+	    db.collection('question').insert(form_json_db, function(err,docs) {
+			if(err){
+	            res.json({"error": error, "in": "add_question_into_collection",
+	                "error_msg": "There was a problem adding the information to the database."
+	            });
+			}else{
+				res.json({"ok": "Record was add with success."});
+			}
+		});
+	});
+}
+
+
+
+
+
+/*
+
+function add_question_into_collection(form_json, req, res){
+
+
+	db.collection('question').insertOne(form_json_db, function(err, result){
+		if(err){
+            res.json({"error": error, "in": "add_question_into_collection",
+                "error_msg": "There was a problem adding the information to the database."
+            });
+		}else{
+			res.json({"ok": "Record was add with success."});
+		}
+	});
+}
+
+*/
+
+
+/*
+
+function add_question_into_collection(form_json, req, res){
+	var form_json_db = {
 		"number": form_json["number"],
 		"question": form_json["question"],
 		"answer": [],
@@ -137,6 +222,10 @@ function add_question_into_collection(form_json, req, res){
 		}
 	});
 }
+
+*/
+
+
 
 
 
@@ -255,6 +344,7 @@ function add_person_into_collection(req, res){
 }
 */
 
+/*
 function getNextSequence(name, callback){
     db_test.collection('counters').findAndModify(
         { "_id": name },
@@ -283,7 +373,7 @@ function add_person_into_collection(req, res){
 	});
 
 }
-
+*/
 
 
 
@@ -299,5 +389,5 @@ module.exports = {
 
 
 	//do_test: do_test
-	add_person_into_collection: add_person_into_collection
+	//add_person_into_collection: add_person_into_collection
 };
