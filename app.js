@@ -18,6 +18,8 @@ app.use(express.static('view'));
 
 // Model/DB
 var model = require("./model/model");
+// Test Model/DB
+//var model = require("./model/model_test");
 
 // Meus módulos
 var tools = require("./module/tools");
