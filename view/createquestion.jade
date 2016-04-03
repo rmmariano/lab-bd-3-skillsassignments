@@ -9,53 +9,26 @@ block block_js
 
 block block_body
     div Create Question
-    
-    //div #{_dbresult_}
-    
-    //div #{_dbresult_[0]}
-    //div= _dbresult_[0].name
-    
-    //div #{_dbresult_.0}
-    //div= _dbresult_.0
-    
-    //div #{_dbresult_(0)}
-    //div= _dbresult_(0)
-    
-    //div= !{_dbresult_.number}
-    
-    //-
-        each val in _dbresult_
-            p --> #{val._id}hey
-            p --> #{val.name}
-    
-    form(id="form", method="POST", class="form-horizontal")
         
-        //-
-            div(class="form-group")
-                label(for="inputNumber", class="col-sm-2 control-label") Número
-                div(class="col-sm-3")
-                    input(type="text", class="form-control", id="number", placeholder="Insira o número da questão", value="2")
-            
+    form(id="form", method="POST", class="form-horizontal")            
         div(class="form-group")
             label(for="inputTitle", class="col-sm-2 control-label") Título
             div(class="col-sm-3")
-                input(type="text", class="form-control", id="title", placeholder="Insira o título da questão")
+                input(type="text", class="form-control", id="title", placeholder="Insira o título da questão")        
         
         div(class="form-group")
-            label(for="inputAnswers", class="col-sm-2 control-label") Respostas:
-            
+            label(for="inputAnswers", class="col-sm-2 control-label") Respostas:            
 
-        - for (var i = 1; i <= 4; i++) {
-        
+        - for (var i = 1; i <= 4; i++) {        
         div(class="form-group")
             label(for="inputCode"+i, class="col-sm-2 control-label") ID código
             div(class="col-sm-3")
-                input(type="text", class="form-control", id="code"+i, value=i, readonly="readonly")
+                input(type="text", class="form-control", id="code"+i, value=i, readonly="readonly")        
         
         div(class="form-group")
             label(for="inputAnswer"+i, class="col-sm-2 control-label") Resposta
             div(class="col-sm-3")
-                input(type="text", class="form-control", id="answer"+i, placeholder="Insira a "+i+" resposta")
+                input(type="text", class="form-control", id="answer"+i, placeholder="Insira a "+i+" resposta")        
         
         div(class="form-group")
             label(for="inputCompetencies"+i, class="col-sm-2 control-label") Competências:

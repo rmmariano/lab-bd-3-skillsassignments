@@ -93,7 +93,6 @@ function get_search_from_collection(search, collection, template, context, req, 
 			} else {
 				//se um template for especificado, retorna um JSON com os valores dentro do contexto do template
 				context["_dbresult_"] = msg;
-				//console.log(">>>> \n"+context["_dbresult_"]);
 				res.render(template, context);
 			}
 		}
@@ -143,7 +142,7 @@ function add_question_into_collection(form_json, req, res){
 	var obj_code = {};
 	for (var i = 1; i <= 4; i++) {
 		obj_code = {
-			"code": form_json["answer"][i-1]["code"],
+			"code": i,
 			"answer": form_json["answer"][i-1]["answer"],
 			"competencies": [
 				{"name": "leadership", "value": form_json["answer"][i-1]["competencies"][0]["value"]},
@@ -160,6 +159,7 @@ function add_question_into_collection(form_json, req, res){
 	getNextSequence('questionnumber', function(err, obj) {
 	    if (err) console.error(err);
 
+		//o campo number é auto incremento
 		form_json_db["number"] = obj.value.seq;
 
 	    db.collection('question').insert(form_json_db, function(err,docs) {

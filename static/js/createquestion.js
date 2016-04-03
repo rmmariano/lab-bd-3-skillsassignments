@@ -3,7 +3,6 @@ $(document).ready(function(){
         e.preventDefault();
 
         var form_json = {
-            "number": $('#number').val().trim(),
             "question": $('#title').val().trim(),
             "answer": [],
             "introduction": $('#introduction').val().trim(),
@@ -28,22 +27,36 @@ $(document).ready(function(){
             form_json["answer"].push(obj_code);
         }
 
-        $.ajax({
-            type: 'POST',
+        var request = $.ajax({
+            url: "/createquestion",
+            method: "POST",
             data: JSON.stringify(form_json),
-            contentType: 'application/json',
-            url: '/createquestion',
-            success: function(data) {
-                if( !(("error" in data) || ("warning" in data)) ){
-                    console.log("ok");
-                }else{
-                    console.log("error");
-                }
-                console.log(data);
-            },
-            error: function() {
-                console.log("error x(");
+            contentType: 'application/json'
+        });
+
+        request.done(function(data, textStatus, information) {
+            if( !(("error" in data) || ("warning" in data)) ){
+                console.log("ok");
+            }else{
+                console.log("error");
             }
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+        request.fail(function(data, textStatus, information) {
+            console.log("fail x( ");
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+        request.always(function(data, textStatus, information) {
+            console.log("always x) ");
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
         });
 
     });

@@ -64,11 +64,6 @@ app.get('/get_student/:ra', function (req, res) {
 });
 
 
-/*
-app.get('/createquestion', function (req, res) {
-	res.render('createquestion', { _title_: 'Create Question' });
-});
-*/
 app.get('/createquestion', function (req, res) {
 	//res.render('createquestion', { _title_: 'Create Question' });
 	model.get_search_from_collection({}, 'competencie', 'createquestion', { _title_: 'Create Question' }, req, res);
