@@ -16,7 +16,6 @@ MongoClient.connect('mongodb://localhost:27017/skills', function(err, database) 
 // DB private functions
 function getNextSequence(name, callback){
 	// Está função serve para autoincremento do mongodb
-
     db.collection('counters').findAndModify(
         { "_id": name },
         [],
@@ -50,6 +49,7 @@ function do_login(search, collection, req, res){
 	);
 }
 
+/*
 function get_search_from_collection(search, collection, req, res){
 	db.collection(collection).find(search).toArray(
 		function(err, result) {
@@ -65,6 +65,34 @@ function get_search_from_collection(search, collection, req, res){
                     "error_msg": "Some problem happens with the DB. Please contact an administrator."
 				});
 			}
+		}
+	);
+}
+*/
+
+function get_search_from_collection(search, collection, template, context, req, res){
+	var msg = {};
+	db.collection(collection).find(search).toArray(
+		function(err, result) {
+			try {
+				if (err) { throw err; }
+				if(_.isEqual(result, [])){
+					msg = {"warning": "The records don't exist."};
+				}else{
+					msg = result;
+				}
+			}catch(error) {
+				msg = {"error": error, "in": "get_search_from_collection",
+                    "error_msg": "Some problem happens with the DB. Please contact an administrator."};
+			}
+
+			if( template == '' ){
+				res.json(msg);
+			}else{
+				context["_dbresult_"] = msg;
+				res.render(template, context);
+			}
+
 		}
 	);
 }
@@ -90,7 +118,6 @@ function add_student_into_collection(form_json, req, res){
 	  	],
 		"question": 1
 	};
-
 	db.collection('student').insertOne(form_json_db, function(err, result){
 		if(err){
             res.json({"error": err, "in": "add_student_into_collection",
@@ -110,7 +137,6 @@ function add_question_into_collection(form_json, req, res){
 		"introduction": form_json["introduction"],
 		"introductionMediaType": "video"
 	};
-
 	var obj_code = {};
 	for (var i = 1; i <= 4; i++) {
 		obj_code = {
@@ -128,7 +154,6 @@ function add_question_into_collection(form_json, req, res){
 		};
 		form_json_db["answer"].push(obj_code);
 	}
-
 	getNextSequence('questionnumber', function(err, obj) {
 	    if (err) console.error(err);
 
@@ -149,7 +174,7 @@ function add_question_into_collection(form_json, req, res){
 
 // responsabilidades que serão utilizadas quando este arquivo for importado
 module.exports = {
-    _: _,
+    //_: _,
     do_login: do_login,
     get_search_from_collection: get_search_from_collection,
     add_student_into_collection: add_student_into_collection,

@@ -55,17 +55,23 @@ app.post('/createstudent', function (req, res) {
 });
 
 app.get('/get_all_students', function (req, res) {
-	model.get_search_from_collection({}, 'student', req, res);
+	model.get_search_from_collection({}, 'student', '', {}, req, res);
 });
 
 app.get('/get_student/:ra', function (req, res) {
 	var ra = parseInt(req.params.ra);
-	model.get_search_from_collection({"ra": ra}, 'student', req, res);
+	model.get_search_from_collection({"ra": ra}, 'student', '', {},req, res);
 });
 
 
+/*
 app.get('/createquestion', function (req, res) {
 	res.render('createquestion', { _title_: 'Create Question' });
+});
+*/
+app.get('/createquestion', function (req, res) {
+	//res.render('createquestion', { _title_: 'Create Question' });
+	model.get_search_from_collection({}, 'competencie', 'createquestion', { _title_: 'Create Question' }, req, res);
 });
 app.post('/createquestion', function (req, res) {
 	var form_json = req.body;
@@ -73,13 +79,25 @@ app.post('/createquestion', function (req, res) {
 });
 
 app.get('/get_all_questions', function (req, res) {
-	model.get_search_from_collection({}, 'question', req, res);
+	model.get_search_from_collection({}, 'question', '', {}, req, res);
 });
 
 app.get('/get_question/:number_question', function (req, res) {
 	var number_question = parseInt(req.params.number_question);
-	model.get_search_from_collection({"number": number_question}, 'question', req, res);
+	model.get_search_from_collection({"number": number_question}, 'question', '', {}, req, res);
 });
+
+
+
+app.get('/get_all_competencies', function (req, res) {
+	model.get_search_from_collection({}, 'competencie', '', {}, req, res);
+});
+
+app.get('/get_competencie/:_id_competencie', function (req, res) {
+	var _id_competencie = parseInt(req.params._id_competencie);
+	model.get_search_from_collection({"_id": _id_competencie}, 'competencie', '', {}, req, res);
+});
+
 
 
 
@@ -97,9 +115,11 @@ app.get('/searchassessment', function (req, res) {
 
 
 /* test functions */
+/*
 app.get('/test_createperson', function (req, res) {
 	model.add_person_into_collection(req, res);
 });
+*/
 
 
 
