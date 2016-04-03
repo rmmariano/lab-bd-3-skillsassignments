@@ -4,7 +4,7 @@
 var _ = require("underscore");
 
 var MongoClient = require('mongodb').MongoClient;
-var autoIncrement = require("mongodb-autoincrement");
+//var autoIncrement = require("mongodb-autoincrement");
 
 /*
 var db;
