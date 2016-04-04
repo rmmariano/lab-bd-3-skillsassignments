@@ -49,27 +49,6 @@ function do_login(search, collection, req, res){
 	);
 }
 
-/*
-function get_search_from_collection(search, collection, req, res){
-	db.collection(collection).find(search).toArray(
-		function(err, result) {
-			try {
-				if (err) { throw err; }
-				if(_.isEqual(result, [])){
-					res.json({"warning": "The records don't exist."});
-					return;
-				}
-				res.json(result);
-			}catch(error) {
-                res.json({"error": error, "in": "get_search_from_collection",
-                    "error_msg": "Some problem happens with the DB. Please contact an administrator."
-				});
-			}
-		}
-	);
-}
-*/
-
 function get_search_from_collection(search, collection, template, context, req, res){
 	var msg = {};
 	// { _id: 1} quer dizer para ordenar crescentemente
@@ -110,13 +89,13 @@ function add_student_into_collection(form_json, req, res){
 		"year": parseInt(form_json.year),
 		"period": parseInt(form_json.period),
 		"competencies": [
-			  {"name": "leadership", "value": 0},
-			  {"name": "communication", "value": 0},
-			  {"name": "values", "value": 0},
-			  {"name": "workGroup", "value": 0},
-			  {"name": "determination", "value": 0},
-			  {"name": "resilience", "value": 0},
-			  {"name": "autonomy", "value": 0}
+			  {"name": "Leadership", "value": 0},
+			  {"name": "Communication", "value": 0},
+			  {"name": "Values", "value": 0},
+			  {"name": "WorkGroup", "value": 0},
+			  {"name": "Determination", "value": 0},
+			  {"name": "Resilience", "value": 0},
+			  {"name": "Autonomy", "value": 0}
 	  	],
 		"question": 1
 	};
@@ -145,13 +124,13 @@ function add_question_into_collection(form_json, req, res){
 			"code": i,
 			"answer": form_json["answer"][i-1]["answer"],
 			"competencies": [
-				{"name": "leadership", "value": form_json["answer"][i-1]["competencies"][0]["value"]},
-				{"name": "communication", "value": form_json["answer"][i-1]["competencies"][1]["value"]},
-				{"name": "values", "value": form_json["answer"][i-1]["competencies"][2]["value"]},
-				{"name": "workGroup", "value": form_json["answer"][i-1]["competencies"][3]["value"]},
-				{"name": "determination", "value": form_json["answer"][i-1]["competencies"][4]["value"]},
-				{"name": "resilience", "value": form_json["answer"][i-1]["competencies"][5]["value"]},
-				{"name": "autonomy", "value": form_json["answer"][i-1]["competencies"][6]["value"]}
+				{"name": "Leadership", "value": form_json["answer"][i-1]["competencies"][0]["value"]},
+				{"name": "Communication", "value": form_json["answer"][i-1]["competencies"][1]["value"]},
+				{"name": "Values", "value": form_json["answer"][i-1]["competencies"][2]["value"]},
+				{"name": "WorkGroup", "value": form_json["answer"][i-1]["competencies"][3]["value"]},
+				{"name": "Determination", "value": form_json["answer"][i-1]["competencies"][4]["value"]},
+				{"name": "Resilience", "value": form_json["answer"][i-1]["competencies"][5]["value"]},
+				{"name": "Autonomy", "value": form_json["answer"][i-1]["competencies"][6]["value"]}
 			]
 		};
 		form_json_db["answer"].push(obj_code);

@@ -15,13 +15,13 @@ $(document).ready(function(){
                 "code": i,
                 "answer": $('#answer'+i).val().trim(),
                 "competencies": [
-                    {"name": "leadership", "value": $('#inputCheckboxLeadership'+i).val().trim()},
-                    {"name": "communication", "value": $('#inputCheckboxCommunication'+i).val().trim()},
-                    {"name": "values", "value": $('#inputCheckboxValues'+i).val().trim()},
-                    {"name": "workGroup", "value": $('#inputCheckboxWorkGroup'+i).val().trim()},
-                    {"name": "determination", "value": $('#inputCheckboxDetermination'+i).val().trim()},
-                    {"name": "resilience", "value": $('#inputCheckboxResilience'+i).val().trim()},
-                    {"name": "autonomy", "value": $('#inputCheckboxAutonomy'+i).val().trim()}
+                    {"name": "Leadership", "value": $('#inputCheckboxLeadership'+i).val().trim()},
+                    {"name": "Communication", "value": $('#inputCheckboxCommunication'+i).val().trim()},
+                    {"name": "Values", "value": $('#inputCheckboxValues'+i).val().trim()},
+                    {"name": "WorkGroup", "value": $('#inputCheckboxWorkGroup'+i).val().trim()},
+                    {"name": "Determination", "value": $('#inputCheckboxDetermination'+i).val().trim()},
+                    {"name": "Resilience", "value": $('#inputCheckboxResilience'+i).val().trim()},
+                    {"name": "Autonomy", "value": $('#inputCheckboxAutonomy'+i).val().trim()}
                 ]
             };
             form_json["answer"].push(obj_code);
