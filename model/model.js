@@ -30,7 +30,7 @@ function getNextSequence(name, callback){
 // DB public functions
 function do_login(search, collection, req, res){
 	// função para fazer o login
-	// retorna o ra do aluno encontrado	
+	// retorna o ra do aluno encontrado
 	var msg = {};
 	db.collection(collection).find(search).toArray(
 		function(err, result) {
@@ -124,13 +124,13 @@ function add_question_into_collection(form_json, req, res){
 			"code": i,
 			"answer": form_json["answer"][i-1]["answer"],
 			"competencies": [
-				{"name": "Leadership", "value": form_json["answer"][i-1]["competencies"][0]["value"]},
-				{"name": "Communication", "value": form_json["answer"][i-1]["competencies"][1]["value"]},
-				{"name": "Values", "value": form_json["answer"][i-1]["competencies"][2]["value"]},
-				{"name": "WorkGroup", "value": form_json["answer"][i-1]["competencies"][3]["value"]},
-				{"name": "Determination", "value": form_json["answer"][i-1]["competencies"][4]["value"]},
-				{"name": "Resilience", "value": form_json["answer"][i-1]["competencies"][5]["value"]},
-				{"name": "Autonomy", "value": form_json["answer"][i-1]["competencies"][6]["value"]}
+				{"name": "Leadership", "value": parseInt(form_json["answer"][i-1]["competencies"][0]["value"])},
+				{"name": "Communication", "value": parseInt(form_json["answer"][i-1]["competencies"][1]["value"])},
+				{"name": "Values", "value": parseInt(form_json["answer"][i-1]["competencies"][2]["value"])},
+				{"name": "WorkGroup", "value": parseInt(form_json["answer"][i-1]["competencies"][3]["value"])},
+				{"name": "Determination", "value": parseInt(form_json["answer"][i-1]["competencies"][4]["value"])},
+				{"name": "Resilience", "value": parseInt(form_json["answer"][i-1]["competencies"][5]["value"])},
+				{"name": "Autonomy", "value": parseInt(form_json["answer"][i-1]["competencies"][6]["value"])}
 			]
 		};
 		form_json_db["answer"].push(obj_code);

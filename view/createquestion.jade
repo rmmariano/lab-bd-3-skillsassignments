@@ -50,6 +50,13 @@ block block_body
             label(for="inputIntroduction", class="col-sm-2 control-label") Introdução
             div(class="col-sm-3")
                 input(type="text", class="form-control", id="introduction", placeholder="Insira um link de vídeo")
+        
+        
+        div(id="ok_add_question", class="alert alert-success", role="alert")
+            |  Questão adicionada com sucesso.
+        
+        div(id="error_add_question", class="alert alert-danger", role="alert")
+            |  Algum dado foi inserido erroneamente. Reveja o formulário. 
     
         div(class="form-group")
             div(class="col-sm-offset-2 col-sm-10")

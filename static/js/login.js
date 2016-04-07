@@ -12,20 +12,6 @@ $(document).ready(function(){
             return;
         }
 
-        /*
-        $.post("/login", {"email": email, "password": password}, function(data){
-            if( !(("error" in data) || ("warning" in data)) ){
-                console.log("ok");
-                sessionStorage.setItem("ra", parseInt(data.ra));
-                window.location.href = '/index';
-            }else{
-                console.log("error");
-                error_login.show();
-            }
-            console.log(data);
-        });
-        */
-
         var request = $.ajax({
             url: "/login",
             method: "POST",

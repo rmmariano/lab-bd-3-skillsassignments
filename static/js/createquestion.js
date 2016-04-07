@@ -1,4 +1,9 @@
 $(document).ready(function(){
+    var ok_add_question = $('#ok_add_question');
+    var error_add_question = $('#error_add_question');
+    ok_add_question.hide();
+    error_add_question.hide();
+
     $('#form').submit( function(e){
         e.preventDefault();
 
@@ -37,8 +42,10 @@ $(document).ready(function(){
         request.done(function(data, textStatus, information) {
             if( !(("error" in data) || ("warning" in data)) ){
                 console.log("ok");
+                ok_add_question.show();
             }else{
                 console.log("error");
+                error_add_question.show();
             }
             console.log(data);
             console.log(textStatus);

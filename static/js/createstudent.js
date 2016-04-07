@@ -14,17 +14,6 @@ $(document).ready(function(){
             "period": $('#period').val().trim()
         };
 
-        /*
-        $.post("/createstudent", form_json, function(data){
-            if( !(("error" in data) || ("warning" in data)) ){
-                console.log("ok");
-            }else{
-                console.log("error");
-            }
-            console.log(data);
-        }); */
-
-
         var request = $.ajax({
             url: "/createstudent",
             method: "POST",
