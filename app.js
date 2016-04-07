@@ -122,3 +122,12 @@ app.get('/test_createperson', function (req, res) {
 app.listen(3000, function () {
 	console.log('Example app listening on port 3000!');
 });
+
+
+
+
+/*
+var answer = prompt("What’s your nsme?");
+console.log(answer);  
+
+*/

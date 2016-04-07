@@ -30,21 +30,21 @@ function getNextSequence(name, callback){
 // DB public functions
 function do_login(search, collection, req, res){
 	// função para fazer o login
-	// retorna o ra do aluno encontrado
+	// retorna o ra do aluno encontrado	
+	var msg = {};
 	db.collection(collection).find(search).toArray(
 		function(err, result) {
 			try {
 				if (err) { throw err; }
 				if(_.isEqual(result, [])){
-					res.json({"warning": "The record doesn't exist."});
-					return;
+					msg = {"warning": "The record doesn't exist."};
 				}
-				res.json({"ra": result[0].ra});
+				msg = {"ra": result[0].ra};
 			}catch(error) {
-				res.json({"error": error, "in": "do_login",
-                    "error_msg": "Some problem happens with the DB. Please contact an administrator."
-				});
+				msg = {"error": error, "in": "do_login",
+                    "error_msg": "Some problem happens with the DB. Please contact an administrator."};
 			}
+			res.json(msg);
 		}
 	);
 }

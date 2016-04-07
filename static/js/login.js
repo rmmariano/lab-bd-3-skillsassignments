@@ -12,6 +12,7 @@ $(document).ready(function(){
             return;
         }
 
+        /*
         $.post("/login", {"email": email, "password": password}, function(data){
             if( !(("error" in data) || ("warning" in data)) ){
                 console.log("ok");
@@ -23,5 +24,42 @@ $(document).ready(function(){
             }
             console.log(data);
         });
+        */
+
+        var request = $.ajax({
+            url: "/login",
+            method: "POST",
+            data: JSON.stringify({"email": email, "password": password}),
+            contentType: 'application/json'
+        });
+
+        request.done(function(data, textStatus, information) {
+            if( !(("error" in data) || ("warning" in data)) ){
+                console.log("ok");
+                sessionStorage.setItem("ra", parseInt(data.ra));
+                window.location.href = '/index';
+            }else{
+                console.log("error");
+                error_login.show();
+            }
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+        request.fail(function(data, textStatus, information) {
+            console.log("fail x( ");
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+        request.always(function(data, textStatus, information) {
+            console.log("always x) ");
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
     });
 });

@@ -14,6 +14,7 @@ $(document).ready(function(){
             "period": $('#period').val().trim()
         };
 
+        /*
         $.post("/createstudent", form_json, function(data){
             if( !(("error" in data) || ("warning" in data)) ){
                 console.log("ok");
@@ -21,6 +22,41 @@ $(document).ready(function(){
                 console.log("error");
             }
             console.log(data);
+        }); */
+
+
+        var request = $.ajax({
+            url: "/createstudent",
+            method: "POST",
+            data: JSON.stringify(form_json),
+            contentType: 'application/json'
         });
+
+        request.done(function(data, textStatus, information) {
+            if( !(("error" in data) || ("warning" in data)) ){
+                console.log("ok");
+            }else{
+                console.log("error");
+            }
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+        request.fail(function(data, textStatus, information) {
+            console.log("fail x( ");
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+        request.always(function(data, textStatus, information) {
+            console.log("always x) ");
+            console.log(data);
+            console.log(textStatus);
+            console.log(information);
+        });
+
+
     });
 });
