@@ -27,11 +27,9 @@ var tools = require("./module/tools");
 
 // rotas
 app.get('/', function (req, res) {
-	//res.render('index', {});
 	res.render('index', { _title_: 'Index', _message_: 'Welcome!' });
 });
 app.get('/index', function (req, res) {
-	//res.render('index', {});
 	res.render('index', { _title_: 'Index', _message_: 'Welcome!' });
 });
 
@@ -46,13 +44,14 @@ app.post('/login', function (req, res) {
 });
 
 
-app.get('/createstudent', function (req, res) {
+app.get('/create_student', function (req, res) {
 	res.render('createstudent', { _title_: 'Create Student' });
 });
-app.post('/createstudent', function (req, res) {
+app.post('/create_student', function (req, res) {
 	var form_json = req.body;
 	model.add_student_into_collection(form_json, req, res);
 });
+
 
 app.get('/get_all_students', function (req, res) {
 	model.get_search_from_collection({}, 'student', '', {}, req, res);
@@ -64,11 +63,10 @@ app.get('/get_student/:ra', function (req, res) {
 });
 
 
-app.get('/createquestion', function (req, res) {
-	//res.render('createquestion', { _title_: 'Create Question' });
+app.get('/create_question', function (req, res) {
 	model.get_search_from_collection({}, 'competencie', 'createquestion', { _title_: 'Create Question' }, req, res);
 });
-app.post('/createquestion', function (req, res) {
+app.post('/create_question', function (req, res) {
 	var form_json = req.body;
 	model.add_question_into_collection(form_json, req, res);
 });

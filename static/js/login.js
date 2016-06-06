@@ -22,29 +22,32 @@ $(document).ready(function(){
         request.done(function(data, textStatus, information) {
             if( !(("error" in data) || ("warning" in data)) ){
                 console.log("ok");
-                sessionStorage.setItem("ra", parseInt(data.ra));
+                //sessionStorage.setItem("ra", parseInt(data.ra));
+                sessionStorage.setItem("inf_student", JSON.stringify(data));
                 window.location.href = '/index';
             }else{
                 console.log("error");
                 error_login.show();
             }
             console.log(data);
-            console.log(textStatus);
-            console.log(information);
+            //sessionStorage.setItem("inf_student", JSON.stringify(data));
+            //var consultando = JSON.parse(sessionStorage.getItem("inf_student"));
+            /*console.log(textStatus);
+            console.log(information);*/
         });
 
         request.fail(function(data, textStatus, information) {
             console.log("fail x( ");
             console.log(data);
-            console.log(textStatus);
-            console.log(information);
+            /*console.log(textStatus);
+            console.log(information);*/
         });
 
         request.always(function(data, textStatus, information) {
             console.log("always x) ");
-            console.log(data);
+            /*console.log(data);
             console.log(textStatus);
-            console.log(information);
+            console.log(information);*/
         });
 
     });

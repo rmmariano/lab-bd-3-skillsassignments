@@ -15,7 +15,7 @@ $(document).ready(function(){
         };
 
         var request = $.ajax({
-            url: "/createstudent",
+            url: "/create_student",
             method: "POST",
             data: JSON.stringify(form_json),
             contentType: 'application/json'

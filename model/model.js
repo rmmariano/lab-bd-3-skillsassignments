@@ -26,6 +26,10 @@ function getNextSequence(name, callback){
 }
 
 
+/*
+res.status(500).send({ error: 'Something failed!' });
+*/
+
 
 // DB public functions
 function do_login(search, collection, req, res){
@@ -39,7 +43,10 @@ function do_login(search, collection, req, res){
 				if(_.isEqual(result, [])){
 					msg = {"warning": "The record doesn't exist."};
 				}
-				msg = {"ra": result[0].ra};
+				//msg = {"ra": result[0].ra};
+
+				msg = result[0];			
+
 			}catch(error) {
 				msg = {"error": error, "in": "do_login",
                     "error_msg": "Some problem happens with the DB. Please contact an administrator."};

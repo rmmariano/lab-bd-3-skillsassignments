@@ -9,19 +9,33 @@
 
 	<script>
 		$(document).ready(function(){
-				var ra = sessionStorage.getItem("ra");
+				var inf_student = JSON.parse(sessionStorage.getItem("inf_student"));
+				var ra = inf_student["ra"];
+				var id_question = inf_student["question"];
 
 				if(ra == null){
 					window.location.href = '/index';
 				} else {
 					$("#ra").append(ra);
 
-					$.getJSON("/user/"+ra+"?format=json&jsoncallback=",function(data) {
-						var question = data[0].question;
+					$.getJSON("/get_question/"+id_question, function(data) {
+						var question = data[0];
 
-						$("#questionNumber").append(question);
+						$("#questionNumber").append(question["number"]);
 
-						$.getJSON("/questions/"+question+"?format=json&jsoncallback=",function(data) {
+						$("#question").append(question["question"]);
+
+						$("#answer1").append(question["answer"][0]["answer"]);
+						$("#answer2").append(question["answer"][1]["answer"]);
+						$("#answer3").append(question["answer"][2]["answer"]);
+						$("#answer4").append(question["answer"][3]["answer"]);
+
+						$("#mediaQuestion").attr("src", data[0].introduction);
+
+
+
+
+						/*$.getJSON("/questions/"+question+"?format=json&jsoncallback=",function(data) {
 
 							var title = data[0].question;
 							$("#question").append(title);
@@ -32,7 +46,8 @@
 							$("#answer4").append(data[0].answer[3].answer);
 
 							$("#mediaQuestion").attr("src", data[0].introduction);
-						});
+						}
+						);*/
 					});
 				}
 		});

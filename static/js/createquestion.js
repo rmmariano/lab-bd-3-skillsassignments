@@ -33,7 +33,7 @@ $(document).ready(function(){
         }
 
         var request = $.ajax({
-            url: "/createquestion",
+            url: "/create_question",
             method: "POST",
             data: JSON.stringify(form_json),
             contentType: 'application/json'
